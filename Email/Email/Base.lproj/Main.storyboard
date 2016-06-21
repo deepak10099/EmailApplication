@@ -29,7 +29,21 @@
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Ju-iF-qeE" userLabel="Header">
                                 <rect key="frame" x="0.0" y="15" width="320" height="62"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Inbox(3)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3jQ-OO-pXm">
+                                        <rect key="frame" x="0.0" y="1" width="320" height="62"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="42"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="3jQ-OO-pXm" firstAttribute="centerY" secondItem="0Ju-iF-qeE" secondAttribute="centerY" id="RuG-n7-A0L"/>
+                                    <constraint firstItem="3jQ-OO-pXm" firstAttribute="centerX" secondItem="0Ju-iF-qeE" secondAttribute="centerX" id="eob-Nx-gPO"/>
+                                    <constraint firstItem="3jQ-OO-pXm" firstAttribute="height" secondItem="0Ju-iF-qeE" secondAttribute="height" id="hog-wy-yNc"/>
+                                    <constraint firstItem="3jQ-OO-pXm" firstAttribute="width" secondItem="0Ju-iF-qeE" secondAttribute="width" id="v1p-rT-psb"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
