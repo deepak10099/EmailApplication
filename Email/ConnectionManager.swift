@@ -11,7 +11,6 @@ class ConnectionManager{
                 if let json = response.result.value{
                     for element in (json as! NSArray)
                     {
-                        print(element["id"] as! Int)
                         let id = element["id"]
                         let isRead = element["isRead"]
                         let isStarred = element["isStarred"]
@@ -49,7 +48,7 @@ class ConnectionManager{
     }
     
     
-    class func fetchEmailAttributesArray()-> [EmailAttributes] {
-        return emailAttributesArray
+    class func fetchEmailAttributeForIndex(index: Int)-> EmailAttributes {
+        return emailAttributesArray[index]
     }
 }

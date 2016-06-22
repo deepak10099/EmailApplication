@@ -9,7 +9,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         self.tableView.registerNib(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier:"TableViewCell")
         self.tableView.separatorStyle = .None
         ConnectionManager.fetchData({(array:NSArray) in
-            self.emailAttributesArray = ConnectionManager.fetchEmailAttributesArray()
+            self.emailAttributesArray = array as! [EmailAttributes]
             self.tableView.reloadData()
         })
 
@@ -71,7 +71,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         tableView.reloadData()
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewControllerWithIdentifier("detailVC")
+        let vc = storyboard.instantiateViewControllerWithIdentifier("detailVC") as! DetailedEmailViewController
+        vc.currentEmailId = indexPath.row + 1
         self.presentViewController(vc, animated: true, completion: nil)
     }
     

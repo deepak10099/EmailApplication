@@ -6,12 +6,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" restorationIdentifier="DetailedTableViewCellOne" id="iN0-l3-epB" customClass="TopTwoCells" customModule="Email" customModuleProvider="target">
+        <view contentMode="scaleToFill" restorationIdentifier="DetailedTableViewCellOne" id="iN0-l3-epB" customClass="DetailedEmailCells" customModule="Email" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="75"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" alpha="0.84999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FuI-by-0QM">
-                    <rect key="frame" x="72" y="40" width="240" height="20"/>
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.84999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FuI-by-0QM">
+                    <rect key="frame" x="72" y="40" width="231" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="d9m-Ia-Sz4"/>
                     </constraints>
@@ -36,8 +36,8 @@
                     </constraints>
                     <state key="normal" backgroundImage="unstarred.png"/>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" alpha="0.84999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fOC-dv-5Jx">
-                    <rect key="frame" x="72" y="15" width="198" height="20"/>
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.84999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fOC-dv-5Jx">
+                    <rect key="frame" x="72" y="15" width="209" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="xlj-DF-Cnh"/>
                     </constraints>
@@ -50,13 +50,16 @@
             <constraints>
                 <constraint firstItem="FuI-by-0QM" firstAttribute="top" secondItem="fOC-dv-5Jx" secondAttribute="bottom" constant="5" id="34o-bT-f37"/>
                 <constraint firstItem="fOC-dv-5Jx" firstAttribute="leading" secondItem="F9V-lF-N8e" secondAttribute="trailing" constant="12" id="8Y1-Tx-3mM"/>
-                <constraint firstAttribute="trailing" secondItem="FuI-by-0QM" secondAttribute="trailing" constant="8" id="K18-D2-1xr"/>
+                <constraint firstAttribute="trailing" secondItem="fOC-dv-5Jx" secondAttribute="trailing" priority="900" constant="20" id="Gcg-Gi-vT9"/>
+                <constraint firstAttribute="trailing" secondItem="FuI-by-0QM" secondAttribute="trailing" constant="17" id="K18-D2-1xr"/>
                 <constraint firstItem="Lvd-rG-k4F" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="Lmq-7G-Ru8"/>
                 <constraint firstAttribute="trailing" secondItem="Lvd-rG-k4F" secondAttribute="trailing" constant="7" id="T6f-Ix-tfD"/>
+                <constraint firstItem="fOC-dv-5Jx" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" priority="990" constant="30" id="UQ8-tD-rtT"/>
                 <constraint firstItem="F9V-lF-N8e" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="cHs-aY-RSu"/>
+                <constraint firstItem="FuI-by-0QM" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" priority="990" constant="30" id="eRX-Dt-HLP"/>
                 <constraint firstItem="fOC-dv-5Jx" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="fAE-ay-wpJ"/>
                 <constraint firstItem="F9V-lF-N8e" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="j9i-HE-IXE"/>
-                <constraint firstItem="Lvd-rG-k4F" firstAttribute="leading" secondItem="fOC-dv-5Jx" secondAttribute="trailing" constant="19" id="kY2-OS-mlQ"/>
+                <constraint firstItem="Lvd-rG-k4F" firstAttribute="leading" secondItem="fOC-dv-5Jx" secondAttribute="trailing" constant="8" id="kY2-OS-mlQ"/>
                 <constraint firstItem="FuI-by-0QM" firstAttribute="top" secondItem="Lvd-rG-k4F" secondAttribute="bottom" constant="1" id="r7s-47-iP2"/>
                 <constraint firstItem="FuI-by-0QM" firstAttribute="leading" secondItem="F9V-lF-N8e" secondAttribute="trailing" constant="12" id="rvi-Wl-nff"/>
             </constraints>
@@ -71,6 +74,8 @@
                 <outlet property="firstLetterImage" destination="F9V-lF-N8e" id="cCz-v7-rDS"/>
                 <outlet property="lineOne" destination="fOC-dv-5Jx" id="nGk-BT-26u"/>
                 <outlet property="lineOneLeadingConstraint" destination="8Y1-Tx-3mM" id="xG6-mp-2ed"/>
+                <outlet property="lineOneTrailingConstraint" destination="kY2-OS-mlQ" id="eLn-ot-7XL"/>
+                <outlet property="lineOneTrailingToSuperViewConstraint" destination="Gcg-Gi-vT9" id="DdO-jz-U7v"/>
                 <outlet property="lineTwo" destination="FuI-by-0QM" id="pUt-b4-SyM"/>
                 <outlet property="lineTwoLeadingConstraint" destination="rvi-Wl-nff" id="E8a-DZ-jur"/>
                 <outlet property="starOrOptionImage" destination="Lvd-rG-k4F" id="DBz-ly-6HJ"/>

@@ -10,10 +10,8 @@ class CustomTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
 
     
-    var emailAttributesArray = []
     override func awakeFromNib() {
         roundView.layer.cornerRadius = 3
-        self.emailAttributesArray = ConnectionManager.fetchEmailAttributesArray()
         
     }
 }
