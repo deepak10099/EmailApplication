@@ -37,8 +37,12 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         cell.subjectLabel.text = self.emailAttributesArray[indexPath.row].subject
         cell.roundView.hidden = self.emailAttributesArray[indexPath.row].isRead
         if cell.roundView.hidden == false {
-            var boldFont = UIFont.boldSystemFontOfSize(20.0)
+            let boldFont = UIFont.boldSystemFontOfSize(20.0)
             cell.nameLabel.font = boldFont
+        }
+        else{
+            let normalFont = UIFont.systemFontOfSize(20.0)
+            cell.nameLabel.font = normalFont
         }
         if (self.emailAttributesArray[indexPath.row].isStarred == true) {
             cell.starredImageView.image = UIImage(named: "starred.png")
@@ -63,6 +67,9 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        emailAttributesArray[indexPath.row].isRead = true
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.reloadData()
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewControllerWithIdentifier("detailVC")
         self.presentViewController(vc, animated: true, completion: nil)

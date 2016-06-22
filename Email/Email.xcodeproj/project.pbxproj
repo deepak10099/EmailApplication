@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5B3931AB1D1A5CEA0054045A /* DetailedEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3931AA1D1A5CEA0054045A /* DetailedEmailViewController.swift */; };
+		5B769D411D1A68E4006B0908 /* TopTwoCells.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B769D401D1A68E4006B0908 /* TopTwoCells.xib */; };
+		5B769D491D1A6BC5006B0908 /* TopTwoCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B769D481D1A6BC5006B0908 /* TopTwoCells.swift */; };
 		5BCE70771D19083C00224D43 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCE70761D19083C00224D43 /* AppDelegate.swift */; };
 		5BCE70791D19083C00224D43 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCE70781D19083C00224D43 /* ViewController.swift */; };
 		5BCE707C1D19083C00224D43 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BCE707A1D19083C00224D43 /* Main.storyboard */; };
@@ -114,6 +116,8 @@
 
 /* Begin PBXFileReference section */
 		5B3931AA1D1A5CEA0054045A /* DetailedEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailedEmailViewController.swift; sourceTree = "<group>"; };
+		5B769D401D1A68E4006B0908 /* TopTwoCells.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TopTwoCells.xib; sourceTree = "<group>"; };
+		5B769D481D1A6BC5006B0908 /* TopTwoCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopTwoCells.swift; sourceTree = "<group>"; };
 		5BCE70731D19083C00224D43 /* Email.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Email.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BCE70761D19083C00224D43 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5BCE70781D19083C00224D43 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -177,6 +181,8 @@
 				5BCE70AA1D190C0400224D43 /* CustomTableViewCell.swift */,
 				5BCE70AC1D190C7200224D43 /* CustomTableViewCell.xib */,
 				5BCE707A1D19083C00224D43 /* Main.storyboard */,
+				5B769D481D1A6BC5006B0908 /* TopTwoCells.swift */,
+				5B769D401D1A68E4006B0908 /* TopTwoCells.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -435,6 +441,7 @@
 				5BCE70811D19083C00224D43 /* LaunchScreen.storyboard in Resources */,
 				5BCE70B51D1945AE00224D43 /* starred.png in Resources */,
 				5BCE707E1D19083C00224D43 /* Assets.xcassets in Resources */,
+				5B769D411D1A68E4006B0908 /* TopTwoCells.xib in Resources */,
 				5BCE70AD1D190C7200224D43 /* CustomTableViewCell.xib in Resources */,
 				5BCE707C1D19083C00224D43 /* Main.storyboard in Resources */,
 			);
@@ -463,6 +470,7 @@
 			files = (
 				5BCE70AB1D190C0400224D43 /* CustomTableViewCell.swift in Sources */,
 				5B3931AB1D1A5CEA0054045A /* DetailedEmailViewController.swift in Sources */,
+				5B769D491D1A6BC5006B0908 /* TopTwoCells.swift in Sources */,
 				5BCE71AC1D1958C500224D43 /* EmailAttributes.swift in Sources */,
 				5BCE71AA1D1948FF00224D43 /* ConnectionManager.swift in Sources */,
 				5BCE70791D19083C00224D43 /* ViewController.swift in Sources */,
