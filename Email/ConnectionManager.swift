@@ -28,14 +28,28 @@ class ConnectionManager{
                         emailAttribute.preview = preview as! String
                         emailAttribute.subject = subject as! String
                         emailAttribute.ts = ts as! Double
-                        
                         emailAttributesArray.append(emailAttribute)
+                        
+                        completion(emailAttributesArray);
                     }
                 }
         }
     }
     
-    class func fetchEmailAttributesArray()-> NSArray {
+    class func fetchEmailBody(id:Int,completion:((String,NSArray)->Void)) {
+        Alamofire.request(.GET, "http://192.168.10.63:8088/api/message/\(id)", parameters:nil)
+            .responseJSON { response in
+                if let json = response.result.value{
+                    let dataDictionary = json as! NSDictionary
+                    let emailBody:String = dataDictionary["body"] as! String
+                    let emailArray:NSArray = dataDictionary["participants"] as! NSArray
+                    completion(emailBody,emailArray)
+                }
+        }
+    }
+    
+    
+    class func fetchEmailAttributesArray()-> [EmailAttributes] {
         return emailAttributesArray
     }
 }

@@ -8,4 +8,5 @@ class EmailAttributes {
     var preview:String!
     var subject:String!
     var ts:Double!
+    var body:String?
 }
