@@ -1,6 +1,6 @@
 import Foundation
 
-class EmailAttributes  {
+class EmailAttributes:NSObject  {
     var id:Int
     var isRead:Bool
     var isStarred:Bool

@@ -10,27 +10,32 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         return refreshControl
     }()
     var emailAttributesArray = [EmailAttributes]()
+    
+    func receiveNetworkNotification(notification:NSNotification) {
+        print("notificationchanged")
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(receiveNetworkNotification), name:"kReachabilityChangedNotification", object: nil)
         tableView.addSubview(refreshControl)
         self.tableView.registerNib(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier:"TableViewCell")
         self.tableView.separatorStyle = .None
-        ConnectionManager.fetchData({(array:NSArray) in
-            self.emailAttributesArray = array as! [EmailAttributes]
-            self.tableView.reloadData()
-            self.loadingView.hidden = true
-        })
+        handleRefresh()
 
         // Do any additional setup after loading the view, typically from a nib.
     }
     
-    func handleRefresh(refreshControl: UIRefreshControl) {
-        self.emailAttributesArray.removeAll()
+    func handleRefresh(refreshControl: UIRefreshControl? = nil) {
+        ConnectionManager.emailAttributesArray.removeAll()
         ConnectionManager.fetchData({(array:NSArray) in
             self.emailAttributesArray = array as! [EmailAttributes]
             self.tableView.reloadData()
+            self.tableView.setNeedsLayout()
             self.loadingView.hidden = true
-            refreshControl.endRefreshing()
+            if refreshControl != nil
+            {
+                refreshControl!.endRefreshing()
+            }
         })
         
     }
@@ -40,6 +45,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("count: \(emailAttributesArray.count)")
         return emailAttributesArray.count
     }
     
@@ -68,7 +74,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         else{
             cell.starredImageView.image = UIImage(named: "unstarred.png")
         }
-
         return cell
     }
     
@@ -76,11 +81,25 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         return true
     }
     
+    func deleteEmailWithIndexPathRow(indexPathRow:Int) -> Void {
+        loadingView.hidden = false
+        ConnectionManager.deleteEmail(emailAttributesArray[indexPathRow].id, completion: { (isSuccess) in
+            if isSuccess == true
+            {
+                self.handleRefresh()
+                UIAlertView(title:"Success!", message: "Email deleted successfully", delegate: nil, cancelButtonTitle: "OK").show()
+            }
+            else
+            {
+               UIAlertView(title:"Failure!", message: "Email not deleted. Check your network connection or try again later.", delegate: nil, cancelButtonTitle: "OK").show()            }
+        })
+    }
+    
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
         if editingStyle == .Delete
         {
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Right)
-            tableView.numberOfRowsInSection(0)
+            deleteEmailWithIndexPathRow(indexPath.row)
         }
     }
     
@@ -90,7 +109,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         tableView.reloadData()
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewControllerWithIdentifier("detailVC") as! DetailedEmailViewController
-        vc.currentEmailId = indexPath.row + 1
+        vc.currentEmailId = emailAttributesArray[indexPath.row].id
         self.presentViewController(vc, animated: true, completion: nil)
     }
     

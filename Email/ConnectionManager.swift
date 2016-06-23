@@ -1,7 +1,27 @@
 import Foundation
 import Alamofire
+import SystemConfiguration
 
-class ConnectionManager{
+
+public class Reachability {
+    class func isConnectedToNetwork() -> Bool {
+        var zeroAddress = sockaddr_in()
+        zeroAddress.sin_len = UInt8(sizeofValue(zeroAddress))
+        zeroAddress.sin_family = sa_family_t(AF_INET)
+        let defaultRouteReachability = withUnsafePointer(&zeroAddress) {
+            SCNetworkReachabilityCreateWithAddress(nil, UnsafePointer($0))
+        }
+        var flags = SCNetworkReachabilityFlags()
+        if !SCNetworkReachabilityGetFlags(defaultRouteReachability!, &flags) {
+            return false
+        }
+        let isReachable = (flags.rawValue & UInt32(kSCNetworkFlagsReachable)) != 0
+        let needsConnection = (flags.rawValue & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
+        return (isReachable && !needsConnection)
+    }
+}
+
+public class ConnectionManager{
     
     static var emailAttributesArray = [EmailAttributes]()
     
@@ -11,10 +31,9 @@ class ConnectionManager{
                 if let json = response.result.value{
                     for element in (json as! NSArray)
                     {
-                       
                         emailAttributesArray.append(EmailAttributes(dictionary: element as![String : AnyObject]))
-                        completion(emailAttributesArray)
                     }
+                    completion(emailAttributesArray)
                 }
         }
     }
@@ -45,8 +64,17 @@ class ConnectionManager{
         }
     }
     
+    class func fetchEmailAttributeForIndex(index: Int)-> EmailAttributes! {
+        for emailAttribute in emailAttributesArray{
+            if emailAttribute.id == index
+            {
+                return emailAttribute
+            }
+        }
+        return nil
+    }
     
-    class func fetchEmailAttributeForIndex(index: Int)-> EmailAttributes {
-        return emailAttributesArray[index]
+    class func emptyEmailAttributesArray() {
+        emailAttributesArray.removeAll()
     }
 }

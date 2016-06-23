@@ -24,7 +24,7 @@ class DetailedEmailViewController: UIViewController, UITableViewDelegate,UITable
         super.viewDidLoad()
         tableView.addSubview(refreshControl)
         self.tableView.registerNib(UINib(nibName: "DetailedEmailCells", bundle: nil), forCellReuseIdentifier:"DetailedTableViewCellOne")
-        currentEmailAttributeObject = ConnectionManager.fetchEmailAttributeForIndex(currentEmailId!-1)
+        currentEmailAttributeObject = ConnectionManager.fetchEmailAttributeForIndex(currentEmailId!)
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.separatorStyle = .None
@@ -110,7 +110,6 @@ class DetailedEmailViewController: UIViewController, UITableViewDelegate,UITable
             
         default: print("to prevent exhaustion")
         }
-        //cell.lineOne.text = dataArray[indexPath.row]
         return cell;
     }
     
