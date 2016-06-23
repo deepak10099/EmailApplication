@@ -4,23 +4,37 @@ import Alamofire
 class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     @IBOutlet weak var loadingView: UIView!
     @IBOutlet weak var tableView: UITableView!
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handleRefresh), forControlEvents: UIControlEvents.ValueChanged)
+        return refreshControl
+    }()
     var emailAttributesArray = [EmailAttributes]()
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.addSubview(refreshControl)
         self.tableView.registerNib(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier:"TableViewCell")
         self.tableView.separatorStyle = .None
-        // Do any additional setup after loading the view, typically from a nib.
-    }
-    
-    override func viewWillAppear(animated: Bool) {
         ConnectionManager.fetchData({(array:NSArray) in
             self.emailAttributesArray = array as! [EmailAttributes]
             self.tableView.reloadData()
             self.loadingView.hidden = true
         })
+
+        // Do any additional setup after loading the view, typically from a nib.
     }
     
-
+    func handleRefresh(refreshControl: UIRefreshControl) {
+        self.emailAttributesArray.removeAll()
+        ConnectionManager.fetchData({(array:NSArray) in
+            self.emailAttributesArray = array as! [EmailAttributes]
+            self.tableView.reloadData()
+            self.loadingView.hidden = true
+            refreshControl.endRefreshing()
+        })
+        
+    }
+    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }

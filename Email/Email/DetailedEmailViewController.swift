@@ -10,12 +10,19 @@ class DetailedEmailViewController: UIViewController, UITableViewDelegate,UITable
     var currentEmailId:Int? = nil
     var emailBody:String? = nil
     var currentEmailAttributeObject:EmailAttributes? = nil
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handleRefresh), forControlEvents: UIControlEvents.ValueChanged)
+        return refreshControl
+    }()
     
     @IBAction func backButtonPressed(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.addSubview(refreshControl)
         self.tableView.registerNib(UINib(nibName: "DetailedEmailCells", bundle: nil), forCellReuseIdentifier:"DetailedTableViewCellOne")
         currentEmailAttributeObject = ConnectionManager.fetchEmailAttributeForIndex(currentEmailId!-1)
         self.tableView.delegate = self
@@ -27,6 +34,14 @@ class DetailedEmailViewController: UIViewController, UITableViewDelegate,UITable
         ConnectionManager.fetchEmailBody(currentEmailId!, completion:{(emailBody:String,participants:NSArray) in
             self.emailBody = emailBody
             self.tableView.reloadData()
+        })
+    }
+    
+    func handleRefresh(refreshControl: UIRefreshControl) {
+        ConnectionManager.fetchEmailBody(currentEmailId!, completion:{(emailBody:String,participants:NSArray) in
+            self.emailBody = emailBody
+            self.tableView.reloadData()
+            refreshControl.endRefreshing()
         })
     }
     
