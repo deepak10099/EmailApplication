@@ -11,25 +11,9 @@ class ConnectionManager{
                 if let json = response.result.value{
                     for element in (json as! NSArray)
                     {
-                        let id = element["id"]
-                        let isRead = element["isRead"]
-                        let isStarred = element["isStarred"]
-                        let participants = element["participants"]
-                        let preview = element["preview"]
-                        let subject = element["subject"]
-                        let ts = element["ts"]
-                        
-                        let emailAttribute:EmailAttributes = EmailAttributes()
-                        emailAttribute.id = id as! Int
-                        emailAttribute.isRead = isRead as! Bool
-                        emailAttribute.isStarred = isStarred as! Bool
-                        emailAttribute.participants = participants as! [String]
-                        emailAttribute.preview = preview as! String
-                        emailAttribute.subject = subject as! String
-                        emailAttribute.ts = ts as! Double
-                        emailAttributesArray.append(emailAttribute)
-                        
-                        completion(emailAttributesArray);
+                       
+                        emailAttributesArray.append(EmailAttributes(dictionary: element as![String : AnyObject]))
+                        completion(emailAttributesArray)
                     }
                 }
         }
@@ -43,6 +27,20 @@ class ConnectionManager{
                     let emailBody:String = dataDictionary["body"] as! String
                     let emailArray:NSArray = dataDictionary["participants"] as! NSArray
                     completion(emailBody,emailArray)
+                }
+        }
+    }
+    
+    class func deleteEmail(id:Int,completion:((Bool)->Void)) {
+        Alamofire.request(.DELETE, "http://192.168.10.63:8088/api/message/\(id)", parameters:nil)
+            .responseJSON { response in
+                if let json = response.result.value{
+//                    let dataDictionary = json as! NSDictionary
+                    print(json)
+                    completion(true)
+                }
+                else{
+                    completion(false)
                 }
         }
     }
