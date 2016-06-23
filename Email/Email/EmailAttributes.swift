@@ -1,6 +1,7 @@
 import Foundation
 
 class EmailAttributes:NSObject  {
+    let defaults = NSUserDefaults.standardUserDefaults()
     var id:Int
     var isRead:Bool {
         didSet(oldValue){

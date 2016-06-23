@@ -77,4 +77,6 @@ public class ConnectionManager{
     class func emptyEmailAttributesArray() {
         emailAttributesArray.removeAll()
     }
+    
+    
 }

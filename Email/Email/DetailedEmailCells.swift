@@ -3,6 +3,7 @@ import UIKit
 
 class DetailedEmailCells: UITableViewCell {
     
+    var starOrOptionTappedClosure: (()->Void)?
     @IBOutlet weak var lineOneLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var lineTwoLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var starOrOptionImage: UIButton!
@@ -14,5 +15,9 @@ class DetailedEmailCells: UITableViewCell {
     @IBOutlet weak var lineOneTrailingToSuperViewConstraint: NSLayoutConstraint!
     override func awakeFromNib() {
         firstLetterImage.layer.cornerRadius = firstLetterImage.frame.size.width/2
+    }
+    
+    @IBAction func starOrOptionImageTapped(sender: AnyObject) {
+        starOrOptionTappedClosure!()
     }
 }

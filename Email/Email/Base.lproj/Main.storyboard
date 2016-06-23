@@ -18,6 +18,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty.png" translatesAutoresizingMaskIntoConstraints="NO" id="O0l-Jg-NQu">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                            </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="TableViewCell" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QRa-Dd-c1e">
                                 <rect key="frame" x="-4" y="77" width="328" height="403"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -72,10 +75,12 @@
                         </subviews>
                         <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="O0l-Jg-NQu" firstAttribute="centerY" secondItem="F3a-E4-UYc" secondAttribute="centerY" id="2Xm-iu-0FZ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="QRa-Dd-c1e" secondAttribute="trailing" constant="-20" id="2yI-Ly-VpS"/>
                             <constraint firstItem="7ly-1e-9Ey" firstAttribute="centerY" secondItem="F3a-E4-UYc" secondAttribute="centerY" id="387-oP-dY2"/>
                             <constraint firstItem="0Ju-iF-qeE" firstAttribute="width" secondItem="F3a-E4-UYc" secondAttribute="width" id="3Uf-b4-TDK"/>
                             <constraint firstItem="0Ju-iF-qeE" firstAttribute="top" secondItem="2xZ-Va-a3K" secondAttribute="bottom" constant="-5" id="8UQ-kI-lxP"/>
+                            <constraint firstItem="O0l-Jg-NQu" firstAttribute="width" secondItem="F3a-E4-UYc" secondAttribute="width" id="H7N-ex-1Ua"/>
                             <constraint firstItem="7ly-1e-9Ey" firstAttribute="centerX" secondItem="F3a-E4-UYc" secondAttribute="centerX" id="JhY-TC-jGN"/>
                             <constraint firstItem="0Ju-iF-qeE" firstAttribute="centerX" secondItem="F3a-E4-UYc" secondAttribute="centerX" id="LrB-Z3-ofA"/>
                             <constraint firstItem="7ly-1e-9Ey" firstAttribute="width" secondItem="F3a-E4-UYc" secondAttribute="width" id="b8C-SR-Gz2"/>
@@ -83,11 +88,14 @@
                             <constraint firstItem="0Ju-iF-qeE" firstAttribute="height" secondItem="F3a-E4-UYc" secondAttribute="height" multiplier="0.13" id="juB-le-DoT"/>
                             <constraint firstItem="QRa-Dd-c1e" firstAttribute="top" secondItem="0Ju-iF-qeE" secondAttribute="bottom" id="keJ-Vd-xg1"/>
                             <constraint firstItem="7ly-1e-9Ey" firstAttribute="height" secondItem="F3a-E4-UYc" secondAttribute="height" id="qDN-qo-aWS"/>
+                            <constraint firstItem="O0l-Jg-NQu" firstAttribute="centerX" secondItem="F3a-E4-UYc" secondAttribute="centerX" id="qFl-kL-Bd9"/>
                             <constraint firstItem="sJ9-Jx-SYP" firstAttribute="top" secondItem="QRa-Dd-c1e" secondAttribute="bottom" id="vw4-hw-B6P"/>
+                            <constraint firstItem="O0l-Jg-NQu" firstAttribute="height" secondItem="F3a-E4-UYc" secondAttribute="height" id="xCP-jX-YWY"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="emptyImageView" destination="O0l-Jg-NQu" id="Q7S-tT-JgU"/>
                         <outlet property="loadingView" destination="7ly-1e-9Ey" id="E1A-OK-gMk"/>
                         <outlet property="tableView" destination="QRa-Dd-c1e" id="EJL-Eq-bE4"/>
                         <outlet property="unreadEmailCountLabel" destination="3jQ-OO-pXm" id="20B-vP-6dm"/>
@@ -139,4 +147,7 @@
             <point key="canvasLocation" x="712" y="76"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="empty.png" width="128" height="128"/>
+    </resources>
 </document>

@@ -35,6 +35,9 @@
                         <constraint firstAttribute="width" constant="24" id="qRB-EJ-CeI"/>
                     </constraints>
                     <state key="normal" backgroundImage="unstarred.png"/>
+                    <connections>
+                        <action selector="starOrOptionImageTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="729-fi-CuX"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" alpha="0.84999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fOC-dv-5Jx">
                     <rect key="frame" x="72" y="15" width="209" height="20"/>

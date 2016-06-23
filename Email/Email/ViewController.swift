@@ -2,6 +2,9 @@ import UIKit
 import Alamofire
 
 class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+    
+    
+    @IBOutlet weak var emptyImageView: UIImageView!
     @IBOutlet weak var unreadEmailCountLabel: UILabel!
     @IBOutlet weak var loadingView: UIView!
     @IBOutlet weak var tableView: UITableView!
@@ -18,13 +21,13 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.emptyImageView.hidden = true
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(receiveNetworkNotification), name:"kReachabilityChangedNotification", object: nil)
         tableView.addSubview(refreshControl)
         self.tableView.registerNib(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier:"TableViewCell")
         self.tableView.separatorStyle = .None
         handleRefresh()
-
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
     
@@ -32,6 +35,17 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         ConnectionManager.emailAttributesArray.removeAll()
         ConnectionManager.fetchData({(array:NSArray) in
             self.emailAttributesArray = array as! [EmailAttributes]
+            if self.emailAttributesArray.count == 0{
+                self.loadingView.hidden = true
+                self.emptyImageView.hidden = false
+                self.tableView.hidden = true
+                self.unreadEmailCountLabel.text = "Empty Inbox"
+                return
+            }
+            else{
+                self.emptyImageView.hidden = true
+                self.tableView.hidden = false
+            }
             self.tableView.reloadData()
             self.checkAndUpdateMailCount()
             self.tableView.setNeedsLayout()
@@ -108,7 +122,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                 self.tableView.setNeedsLayout()
                 self.tableView.layoutSubviews()
                 cell.setNeedsLayout()
-                cell.layoutSubviews()            }
+                cell.layoutSubviews()
+            }
         }
         return cell
     }
@@ -127,7 +142,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             }
             else
             {
-               UIAlertView(title:"Failure!", message: "Email not deleted. Check your network connection or try again later.", delegate: nil, cancelButtonTitle: "OK").show()            }
+                UIAlertView(title:"Failure!", message: "Email not deleted. Check your network connection or try again later.", delegate: nil, cancelButtonTitle: "OK").show()            }
         })
     }
     
@@ -146,6 +161,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         self.checkAndUpdateMailCount()
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewControllerWithIdentifier("detailVC") as! DetailedEmailViewController
+        vc.delegate = self
         vc.currentEmailId = emailAttributesArray[indexPath.row].id
         self.presentViewController(vc, animated: true, completion: nil)
     }
@@ -154,7 +170,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
 }
 
 

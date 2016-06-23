@@ -7,6 +7,7 @@ class DetailedEmailViewController: UIViewController, UITableViewDelegate,UITable
     @IBOutlet weak var tableView: UITableView!
     let boldFont = UIFont.boldSystemFontOfSize(16.0)
     let normalFont = UIFont.systemFontOfSize(14.0)
+    var delegate:ViewController! = nil
     var currentEmailId:Int? = nil
     var emailBody:String? = nil
     var currentEmailAttributeObject:EmailAttributes? = nil
@@ -17,6 +18,7 @@ class DetailedEmailViewController: UIViewController, UITableViewDelegate,UITable
     }()
     
     @IBAction func backButtonPressed(sender: AnyObject) {
+        delegate.tableView.reloadData()
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -81,6 +83,7 @@ class DetailedEmailViewController: UIViewController, UITableViewDelegate,UITable
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = self.tableView.dequeueReusableCellWithIdentifier("DetailedTableViewCellOne", forIndexPath: indexPath) as! DetailedEmailCells
+        cell.contentView.userInteractionEnabled = false
         switch indexPath.row
         {
         case 0:
@@ -94,10 +97,32 @@ class DetailedEmailViewController: UIViewController, UITableViewDelegate,UITable
             if  defaults.boolForKey("isStarredForId\(currentEmailId!)")
             {
                 cell.starOrOptionImage.setBackgroundImage(UIImage(named: "starred.png"), forState: UIControlState.Normal)
-        
+                
             }
             else{
-              cell.starOrOptionImage.setBackgroundImage(UIImage(named: "unstarred.png"), forState: UIControlState.Normal)
+                cell.starOrOptionImage.setBackgroundImage(UIImage(named: "unstarred.png"), forState: UIControlState.Normal)
+            }
+            
+            cell.starOrOptionTappedClosure = {() in
+                let defaults = NSUserDefaults.standardUserDefaults()
+                if defaults.boolForKey("isStarredForId\(self.currentEmailId!)") {
+                    cell.starOrOptionImage.setBackgroundImage(UIImage(named: "unstarred.png"), forState: UIControlState.Normal)
+//                    defaults.setBool(false, forKey: "isStarredForId\(self.currentEmailId!)")
+                    self.delegate.emailAttributesArray[self.currentEmailId! - 1].isStarred = false
+                    self.tableView.setNeedsLayout()
+                    self.tableView.layoutSubviews()
+                    cell.setNeedsLayout()
+                    cell.layoutSubviews()
+                }
+                else
+                {
+                    cell.starOrOptionImage.setBackgroundImage(UIImage(named: "starred.png"), forState: UIControlState.Normal)
+//                    defaults.setBool(true, forKey: "isStarredForId\(self.currentEmailId!)")
+                    self.delegate.emailAttributesArray[self.currentEmailId! - 1].isStarred = true
+                    self.tableView.setNeedsLayout()
+                    self.tableView.layoutSubviews()
+                    cell.setNeedsLayout()
+                    cell.layoutSubviews()            }
             }
             
             
