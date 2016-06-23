@@ -3,12 +3,35 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    var reachability:Reachability!;
+    var networkStatus : NetworkStatus!
+
     var window: UIWindow?
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("receiveNetworkNotification:"), name:"kReachabilityChangedNotification", object: nil)
+        self.reachability = Reachability.reachabilityForInternetConnection();
+        self.reachability.startNotifier();
+        
         return true
+    }
+    
+    func receiveNetworkNotification(notification:NSNotification) {
+        let networkReachability = Reachability.reachabilityForInternetConnection()
+        networkReachability.startNotifier()
+        
+        networkStatus = reachability.currentReachabilityStatus()
+        if (networkStatus == NetworkStatus.NotReachable)
+        {
+            print("Not Reachable")
+        }
+        else
+        {
+            print("Reachable")
+        }
+    }
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -34,5 +57,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
-}
+
 

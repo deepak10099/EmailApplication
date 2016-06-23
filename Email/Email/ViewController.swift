@@ -16,13 +16,10 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }()
     var emailAttributesArray = [EmailAttributes]()
     
-    func receiveNetworkNotification(notification:NSNotification) {
-        print("notificationchanged")
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
         emptyImageView.hidden = true
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(receiveNetworkNotification), name:"kReachabilityChangedNotification", object: nil)
+//       NSNotificationCenter().addObserver(self, selector:#selector(ViewController.receiveNetworkNotification(_:)), name: kReachabilityChangedNotification, object: nil)
         tableView.addSubview(refreshControl)
         tableView.registerNib(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier:"TableViewCell")
         tableView.separatorStyle = .None
