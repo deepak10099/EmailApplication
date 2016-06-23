@@ -82,12 +82,13 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let defaults = NSUserDefaults.standardUserDefaults()
         let cell =  tableView.dequeueReusableCellWithIdentifier("TableViewCell", forIndexPath: indexPath) as! CustomTableViewCell
         cell.backgroundColor = UIColor.groupTableViewBackgroundColor()
         cell.nameLabel.text =  emailAttributesArray[indexPath.row].participants[0]
         cell.previewLabel.text =  emailAttributesArray[indexPath.row].preview
         cell.subjectLabel.text =  emailAttributesArray[indexPath.row].subject
-        cell.roundView.hidden =  emailAttributesArray[indexPath.row].isRead
+        cell.roundView.hidden =  (defaults.boolForKey("isReadForId\( emailAttributesArray[indexPath.row].id)"))
         cell.bringSubviewToFront(cell.starredImageView)
         cell.contentView.userInteractionEnabled = false
         if cell.roundView.hidden == false {
@@ -98,7 +99,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             let normalFont = UIFont.systemFontOfSize(20.0)
             cell.nameLabel.font = normalFont
         }
-        let defaults = NSUserDefaults.standardUserDefaults()
         if (defaults.boolForKey("isStarredForId\( emailAttributesArray[indexPath.row].id)")) {
             cell.starredImageView.setBackgroundImage(UIImage(named: "starred.png"), forState: UIControlState.Normal)
         }

@@ -140,7 +140,7 @@ class DetailedEmailViewController: UIViewController, UITableViewDelegate,UITable
             cell.lineTwo.removeFromSuperview()
             
             
-        default: print("to prevent exhaustion")
+        default: print("")
         }
         return cell;
     }
