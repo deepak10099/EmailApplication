@@ -18,8 +18,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" restorationIdentifier="TableViewCell" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QRa-Dd-c1e">
-                                <rect key="frame" x="0.0" y="77" width="320" height="403"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="TableViewCell" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QRa-Dd-c1e">
+                                <rect key="frame" x="-4" y="77" width="328" height="403"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="kA1-wM-YLz" id="y5W-Rc-JXk"/>
@@ -29,8 +29,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Ju-iF-qeE" userLabel="Header">
                                 <rect key="frame" x="0.0" y="15" width="320" height="62"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Inbox(3)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3jQ-OO-pXm">
-                                        <rect key="frame" x="0.0" y="1" width="320" height="62"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Inbox(3)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3jQ-OO-pXm">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="62"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="42"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -44,27 +44,57 @@
                                     <constraint firstItem="3jQ-OO-pXm" firstAttribute="width" secondItem="0Ju-iF-qeE" secondAttribute="width" id="v1p-rT-psb"/>
                                 </constraints>
                             </view>
+                            <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ly-1e-9Ey">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="j2R-wF-gqE">
+                                        <rect key="frame" x="150" y="230" width="20" height="20"/>
+                                    </activityIndicatorView>
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.75" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fetching mail..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pEB-vH-hMn">
+                                        <rect key="frame" x="0.0" y="368" width="320" height="78"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="78" id="5IV-dd-LTR"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="23"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="pEB-vH-hMn" secondAttribute="bottom" constant="34" id="5aH-16-F6T"/>
+                                    <constraint firstItem="j2R-wF-gqE" firstAttribute="centerX" secondItem="7ly-1e-9Ey" secondAttribute="centerX" id="CEX-MA-kUz"/>
+                                    <constraint firstItem="pEB-vH-hMn" firstAttribute="centerX" secondItem="7ly-1e-9Ey" secondAttribute="centerX" id="Lfa-zw-RWo"/>
+                                    <constraint firstItem="pEB-vH-hMn" firstAttribute="width" secondItem="7ly-1e-9Ey" secondAttribute="width" id="cuQ-YT-Hd3"/>
+                                    <constraint firstItem="j2R-wF-gqE" firstAttribute="centerY" secondItem="7ly-1e-9Ey" secondAttribute="centerY" id="jCc-Nr-Idc"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="QRa-Dd-c1e" secondAttribute="trailing" constant="-20" id="2yI-Ly-VpS"/>
+                            <constraint firstItem="7ly-1e-9Ey" firstAttribute="centerY" secondItem="F3a-E4-UYc" secondAttribute="centerY" id="387-oP-dY2"/>
                             <constraint firstItem="0Ju-iF-qeE" firstAttribute="width" secondItem="F3a-E4-UYc" secondAttribute="width" id="3Uf-b4-TDK"/>
                             <constraint firstItem="0Ju-iF-qeE" firstAttribute="top" secondItem="2xZ-Va-a3K" secondAttribute="bottom" constant="-5" id="8UQ-kI-lxP"/>
+                            <constraint firstItem="7ly-1e-9Ey" firstAttribute="centerX" secondItem="F3a-E4-UYc" secondAttribute="centerX" id="JhY-TC-jGN"/>
                             <constraint firstItem="0Ju-iF-qeE" firstAttribute="centerX" secondItem="F3a-E4-UYc" secondAttribute="centerX" id="LrB-Z3-ofA"/>
+                            <constraint firstItem="7ly-1e-9Ey" firstAttribute="width" secondItem="F3a-E4-UYc" secondAttribute="width" id="b8C-SR-Gz2"/>
                             <constraint firstItem="QRa-Dd-c1e" firstAttribute="leading" secondItem="F3a-E4-UYc" secondAttribute="leadingMargin" constant="-20" id="ft5-F2-EGj"/>
                             <constraint firstItem="0Ju-iF-qeE" firstAttribute="height" secondItem="F3a-E4-UYc" secondAttribute="height" multiplier="0.13" id="juB-le-DoT"/>
                             <constraint firstItem="QRa-Dd-c1e" firstAttribute="top" secondItem="0Ju-iF-qeE" secondAttribute="bottom" id="keJ-Vd-xg1"/>
+                            <constraint firstItem="7ly-1e-9Ey" firstAttribute="height" secondItem="F3a-E4-UYc" secondAttribute="height" id="qDN-qo-aWS"/>
                             <constraint firstItem="sJ9-Jx-SYP" firstAttribute="top" secondItem="QRa-Dd-c1e" secondAttribute="bottom" id="vw4-hw-B6P"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="loadingView" destination="7ly-1e-9Ey" id="E1A-OK-gMk"/>
                         <outlet property="tableView" destination="QRa-Dd-c1e" id="EJL-Eq-bE4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XP6-tb-fyv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="386" y="76"/>
+            <point key="canvasLocation" x="312" y="76"/>
         </scene>
         <!--Detailed Email View Controller-->
         <scene sceneID="SE6-IN-UTd">

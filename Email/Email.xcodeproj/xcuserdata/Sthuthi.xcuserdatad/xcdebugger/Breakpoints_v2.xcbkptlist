@@ -27,54 +27,6 @@
             endingLineNumber = "19"
             landmarkName = "viewDidLoad()"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Email.DetailedEmailViewController.viewDidLoad () -&gt; ()"
-                  moduleName = "Email"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Sthuthi/EmailApplication/Email/Email/DetailedEmailViewController.swift"
-                  timestampString = "488290206.13614"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "20"
-                  endingLineNumber = "20"
-                  offsetFromSymbolStart = "299">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Email.DetailedEmailViewController.(viewDidLoad () -&gt; ()).(closure #1)"
-                  moduleName = "Email"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Sthuthi/EmailApplication/Email/Email/DetailedEmailViewController.swift"
-                  timestampString = "488290206.136327"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "21"
-                  endingLineNumber = "21"
-                  offsetFromSymbolStart = "28">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ConnectionManager.swift"
-            timestampString = "488289984.753173"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
-            landmarkName = "fetchEmailBody(_:completion:)"
-            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -180,9 +180,9 @@
 			children = (
 				5BCE70AA1D190C0400224D43 /* CustomTableViewCell.swift */,
 				5BCE70AC1D190C7200224D43 /* CustomTableViewCell.xib */,
-				5BCE707A1D19083C00224D43 /* Main.storyboard */,
 				5B769D481D1A6BC5006B0908 /* DetailedEmailCells.swift */,
 				5B769D401D1A68E4006B0908 /* DetailedEmailCells.xib */,
+				5BCE707A1D19083C00224D43 /* Main.storyboard */,
 			);
 			name = View;
 			sourceTree = "<group>";

@@ -2,18 +2,22 @@ import UIKit
 import Alamofire
 
 class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+    @IBOutlet weak var loadingView: UIView!
     @IBOutlet weak var tableView: UITableView!
     var emailAttributesArray = [EmailAttributes]()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.registerNib(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier:"TableViewCell")
         self.tableView.separatorStyle = .None
+        // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
         ConnectionManager.fetchData({(array:NSArray) in
             self.emailAttributesArray = array as! [EmailAttributes]
             self.tableView.reloadData()
+            self.loadingView.hidden = true
         })
-
-        // Do any additional setup after loading the view, typically from a nib.
     }
     
 
