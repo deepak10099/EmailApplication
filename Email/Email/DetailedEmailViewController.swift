@@ -87,7 +87,6 @@ class DetailedEmailViewController: UIViewController, UITableViewDelegate,UITable
             cell.firstLetterImage.removeFromSuperview()
             cell.lineOne.font = boldFont
             cell.lineOne.text = currentEmailAttributeObject?.subject
-            cell.lineTwo.text = "The participants"
             cell.lineOne.textColor = UIColor.blackColor()
             cell.lineTwo.textColor = UIColor.lightGrayColor()
             cell.lineTwo.text = currentEmailAttributeObject?.participants.joinWithSeparator(",")
@@ -98,6 +97,7 @@ class DetailedEmailViewController: UIViewController, UITableViewDelegate,UITable
             cell.lineTwo.removeFromSuperview()
             cell.lineOne.font = normalFont
             cell.lineOne.text = currentEmailAttributeObject?.participants[0]
+            cell.firstLetterImage.titleLabel?.text = Array(arrayLiteral: cell.lineOne.text! as String)[0]
             
             
         case 2:
