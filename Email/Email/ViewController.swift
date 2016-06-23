@@ -105,7 +105,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             {
                 cell.starredImageView.setBackgroundImage(UIImage(named: "starred.png"), forState: UIControlState.Normal)
                 self.emailAttributesArray[indexPath.row].isStarred = true
-                self.emailAttributesArray[indexPath.row].isStarred = false
                 self.tableView.setNeedsLayout()
                 self.tableView.layoutSubviews()
                 cell.setNeedsLayout()
