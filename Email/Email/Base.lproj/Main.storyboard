@@ -90,6 +90,7 @@
                     <connections>
                         <outlet property="loadingView" destination="7ly-1e-9Ey" id="E1A-OK-gMk"/>
                         <outlet property="tableView" destination="QRa-Dd-c1e" id="EJL-Eq-bE4"/>
+                        <outlet property="unreadEmailCountLabel" destination="3jQ-OO-pXm" id="20B-vP-6dm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XP6-tb-fyv" userLabel="First Responder" sceneMemberID="firstResponder"/>

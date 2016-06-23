@@ -26,7 +26,7 @@ public class ConnectionManager{
     static var emailAttributesArray = [EmailAttributes]()
     
     class func fetchData(completion:(NSArray)->Void) {
-        Alamofire.request(.GET, "http://192.168.10.63:8088/api/message/", parameters:nil)
+        Alamofire.request(.GET, "http://127.0.0.1:8088/api/message/", parameters:nil)
             .responseJSON { response in
                 if let json = response.result.value{
                     for element in (json as! NSArray)
@@ -39,7 +39,7 @@ public class ConnectionManager{
     }
     
     class func fetchEmailBody(id:Int,completion:((String,NSArray)->Void)) {
-        Alamofire.request(.GET, "http://192.168.10.63:8088/api/message/\(id)", parameters:nil)
+        Alamofire.request(.GET, "http://127.0.0.1:8088/api/message/\(id)", parameters:nil)
             .responseJSON { response in
                 if let json = response.result.value{
                     let dataDictionary = json as! NSDictionary
@@ -51,7 +51,7 @@ public class ConnectionManager{
     }
     
     class func deleteEmail(id:Int,completion:((Bool)->Void)) {
-        Alamofire.request(.DELETE, "http://192.168.10.63:8088/api/message/\(id)", parameters:nil)
+        Alamofire.request(.DELETE, "http://127.0.0.1:8088/api/message/\(id)", parameters:nil)
             .responseJSON { response in
                 if let json = response.result.value{
 //                    let dataDictionary = json as! NSDictionary

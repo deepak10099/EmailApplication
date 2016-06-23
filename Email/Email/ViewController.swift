@@ -2,8 +2,10 @@ import UIKit
 import Alamofire
 
 class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+    @IBOutlet weak var unreadEmailCountLabel: UILabel!
     @IBOutlet weak var loadingView: UIView!
     @IBOutlet weak var tableView: UITableView!
+    var emailUnreadCount = 0
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(handleRefresh), forControlEvents: UIControlEvents.ValueChanged)
@@ -31,6 +33,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         ConnectionManager.fetchData({(array:NSArray) in
             self.emailAttributesArray = array as! [EmailAttributes]
             self.tableView.reloadData()
+            self.checkAndUpdateMailCount()
             self.tableView.setNeedsLayout()
             self.loadingView.hidden = true
             if refreshControl != nil
@@ -38,6 +41,17 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                 refreshControl!.endRefreshing()
             }
         })
+    }
+    
+    func checkAndUpdateMailCount(){
+        self.emailUnreadCount = 0
+        for emailAttribute in self.emailAttributesArray
+        {
+            if emailAttribute.isRead == false{
+                self.emailUnreadCount = self.emailUnreadCount + 1
+            }
+        }
+        self.unreadEmailCountLabel.text = "Inbox(\(self.emailUnreadCount))"
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -130,6 +144,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         emailAttributesArray[indexPath.row].isRead = true
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         tableView.reloadData()
+        self.checkAndUpdateMailCount()
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewControllerWithIdentifier("detailVC") as! DetailedEmailViewController
         vc.currentEmailId = emailAttributesArray[indexPath.row].id
