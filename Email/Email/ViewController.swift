@@ -16,6 +16,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(receiveNetworkNotification), name:"kReachabilityChangedNotification", object: nil)
         tableView.addSubview(refreshControl)
         self.tableView.registerNib(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier:"TableViewCell")
@@ -37,7 +38,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                 refreshControl!.endRefreshing()
             }
         })
-        
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -54,12 +54,15 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        var isStarred = false
         let cell = self.tableView.dequeueReusableCellWithIdentifier("TableViewCell", forIndexPath: indexPath) as! CustomTableViewCell
         cell.backgroundColor = UIColor.groupTableViewBackgroundColor()
         cell.nameLabel.text = self.emailAttributesArray[indexPath.row].participants[0]
         cell.previewLabel.text = self.emailAttributesArray[indexPath.row].preview
         cell.subjectLabel.text = self.emailAttributesArray[indexPath.row].subject
         cell.roundView.hidden = self.emailAttributesArray[indexPath.row].isRead
+        cell.bringSubviewToFront(cell.starredImageView)
+        cell.contentView.userInteractionEnabled = false
         if cell.roundView.hidden == false {
             let boldFont = UIFont.boldSystemFontOfSize(20.0)
             cell.nameLabel.font = boldFont
@@ -68,11 +71,31 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             let normalFont = UIFont.systemFontOfSize(20.0)
             cell.nameLabel.font = normalFont
         }
-        if (self.emailAttributesArray[indexPath.row].isStarred == true) {
-            cell.starredImageView.image = UIImage(named: "starred.png")
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if (defaults.boolForKey("isStarredForId\(self.emailAttributesArray[indexPath.row].id)")) {
+            cell.starredImageView.setBackgroundImage(UIImage(named: "starred.png"), forState: UIControlState.Normal)
         }
         else{
-            cell.starredImageView.image = UIImage(named: "unstarred.png")
+            cell.starredImageView.setBackgroundImage(UIImage(named: "unstarred.png"), forState: UIControlState.Normal)
+        }
+        cell.starredImageViewTappedClosure = {() in
+            if defaults.boolForKey("isStarredForId\(self.emailAttributesArray[indexPath.row].id)") {
+                cell.starredImageView.setBackgroundImage(UIImage(named: "unstarred.png"), forState: UIControlState.Normal)
+                self.emailAttributesArray[indexPath.row].isStarred = false
+                self.tableView.setNeedsLayout()
+                self.tableView.layoutSubviews()
+                cell.setNeedsLayout()
+                cell.layoutSubviews()
+            }
+            else
+            {
+                cell.starredImageView.setBackgroundImage(UIImage(named: "starred.png"), forState: UIControlState.Normal)
+                self.emailAttributesArray[indexPath.row].isStarred = true
+                self.emailAttributesArray[indexPath.row].isStarred = false
+                self.tableView.setNeedsLayout()
+                self.tableView.layoutSubviews()
+                cell.setNeedsLayout()
+                cell.layoutSubviews()            }
         }
         return cell
     }

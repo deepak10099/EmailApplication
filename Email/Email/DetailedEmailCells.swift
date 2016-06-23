@@ -10,7 +10,7 @@ class DetailedEmailCells: UITableViewCell {
     @IBOutlet weak var lineOne: UILabel!
     @IBOutlet weak var lineTwo: UILabel!
     @IBOutlet weak var lineOneTrailingConstraint: NSLayoutConstraint!
-    
+    @IBOutlet weak var starOrOptionTapped: UIButton!
     @IBOutlet weak var lineOneTrailingToSuperViewConstraint: NSLayoutConstraint!
     override func awakeFromNib() {
         firstLetterImage.layer.cornerRadius = firstLetterImage.frame.size.width/2

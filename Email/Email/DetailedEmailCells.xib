@@ -79,6 +79,7 @@
                 <outlet property="lineTwo" destination="FuI-by-0QM" id="pUt-b4-SyM"/>
                 <outlet property="lineTwoLeadingConstraint" destination="rvi-Wl-nff" id="E8a-DZ-jur"/>
                 <outlet property="starOrOptionImage" destination="Lvd-rG-k4F" id="DBz-ly-6HJ"/>
+                <outlet property="starOrOptionTapped" destination="Lvd-rG-k4F" id="22U-i5-iSw"/>
             </connections>
             <point key="canvasLocation" x="274" y="47.5"/>
         </view>

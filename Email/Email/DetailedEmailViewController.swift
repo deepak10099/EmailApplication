@@ -90,6 +90,15 @@ class DetailedEmailViewController: UIViewController, UITableViewDelegate,UITable
             cell.lineOne.textColor = UIColor.blackColor()
             cell.lineTwo.textColor = UIColor.lightGrayColor()
             cell.lineTwo.text = currentEmailAttributeObject?.participants.joinWithSeparator(",")
+            let defaults = NSUserDefaults.standardUserDefaults()
+            if  defaults.boolForKey("isStarredForId\(currentEmailId!)")
+            {
+                cell.starOrOptionImage.setBackgroundImage(UIImage(named: "starred.png"), forState: UIControlState.Normal)
+        
+            }
+            else{
+              cell.starOrOptionImage.setBackgroundImage(UIImage(named: "unstarred.png"), forState: UIControlState.Normal)
+            }
             
             
         case 1:

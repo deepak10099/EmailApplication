@@ -20,13 +20,6 @@
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="unstarred.png" translatesAutoresizingMaskIntoConstraints="NO" id="i5T-Ig-kmO">
-                            <rect key="frame" x="288" y="8" width="24" height="24"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="24" id="Vmr-yn-HF1"/>
-                                <constraint firstAttribute="height" constant="24" id="yvu-pJ-ZGo"/>
-                            </constraints>
-                        </imageView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kpO-jy-nMl" userLabel="RoundView">
                             <rect key="frame" x="7" y="17" width="6" height="6"/>
                             <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="0.53836206896551719" colorSpace="calibratedRGB"/>
@@ -35,17 +28,28 @@
                                 <constraint firstAttribute="height" constant="6" id="lDW-Xe-ThU"/>
                             </constraints>
                         </view>
+                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZQh-Ql-l38">
+                            <rect key="frame" x="288" y="9" width="24" height="24"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="24" id="puI-jv-eX4"/>
+                                <constraint firstAttribute="height" constant="24" id="tlp-Ao-PIO"/>
+                            </constraints>
+                            <state key="normal" backgroundImage="unstarred.png"/>
+                            <connections>
+                                <action selector="starredImageViewTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="Vyl-qb-6qW"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="kpO-jy-nMl" firstAttribute="leading" secondItem="DBd-rT-Hp6" secondAttribute="leading" constant="7" id="2fO-Em-4hh"/>
-                        <constraint firstItem="i5T-Ig-kmO" firstAttribute="centerY" secondItem="DBd-rT-Hp6" secondAttribute="centerY" constant="3.5" id="FG4-Ao-ytp"/>
-                        <constraint firstAttribute="trailing" secondItem="i5T-Ig-kmO" secondAttribute="trailing" constant="8" id="Ivr-ls-zPY"/>
+                        <constraint firstAttribute="trailing" secondItem="ZQh-Ql-l38" secondAttribute="trailing" constant="8" id="LdX-ew-Ton"/>
                         <constraint firstItem="kpO-jy-nMl" firstAttribute="centerY" secondItem="DBd-rT-Hp6" secondAttribute="centerY" constant="3.5" id="MTo-sr-OAZ"/>
                         <constraint firstItem="cqc-k3-zvJ" firstAttribute="width" secondItem="DBd-rT-Hp6" secondAttribute="width" constant="-60" id="PG2-ZT-yjM"/>
                         <constraint firstItem="cqc-k3-zvJ" firstAttribute="leading" secondItem="DBd-rT-Hp6" secondAttribute="leading" constant="20" id="gRj-Wy-Fiq"/>
                         <constraint firstItem="cqc-k3-zvJ" firstAttribute="centerY" secondItem="DBd-rT-Hp6" secondAttribute="centerY" constant="4" id="mLJ-d7-pHZ"/>
                         <constraint firstItem="cqc-k3-zvJ" firstAttribute="height" secondItem="DBd-rT-Hp6" secondAttribute="height" id="u1G-1u-kHT"/>
+                        <constraint firstItem="ZQh-Ql-l38" firstAttribute="centerY" secondItem="DBd-rT-Hp6" secondAttribute="centerY" id="wru-Ah-9NT"/>
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="999" text="Subject" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hva-Ka-qWY">
@@ -98,7 +102,7 @@
                 <outlet property="nameLabel" destination="cqc-k3-zvJ" id="Uwj-Sp-tfQ"/>
                 <outlet property="previewLabel" destination="fwA-0j-NrH" id="WF2-pg-B8n"/>
                 <outlet property="roundView" destination="kpO-jy-nMl" id="ZlV-Th-b9w"/>
-                <outlet property="starredImageView" destination="i5T-Ig-kmO" id="n1L-vl-MNW"/>
+                <outlet property="starredImageView" destination="ZQh-Ql-l38" id="sqk-ji-VYt"/>
                 <outlet property="subjectLabel" destination="hva-Ka-qWY" id="kQ7-G8-CiD"/>
             </connections>
             <point key="canvasLocation" x="309" y="242"/>

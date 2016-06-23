@@ -2,8 +2,18 @@ import Foundation
 
 class EmailAttributes:NSObject  {
     var id:Int
-    var isRead:Bool
-    var isStarred:Bool
+    var isRead:Bool {
+        didSet(newValue){
+            let defaults = NSUserDefaults.standardUserDefaults()
+            defaults.setBool(newValue, forKey: "isReadForId\(id)")
+        }
+    }
+    var isStarred:Bool{
+        didSet(newValue){
+            let defaults = NSUserDefaults.standardUserDefaults()
+            defaults.setBool(newValue, forKey: "isStarredForId\(id)")
+        }
+    }
     var participants:[String]
     var preview:String
     var subject:String
@@ -18,5 +28,16 @@ class EmailAttributes:NSObject  {
          preview = dictionary["preview"] as! String
          subject = dictionary["subject"] as! String
          ts =  dictionary["ts"] as! Double
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if defaults.objectForKey("isReadForId\(id)") == nil {
+            defaults.setBool(isRead, forKey: "isReadForId\(id)")
+
+        }
+        if defaults.objectForKey("isStarredForId\(id)") == nil {
+            defaults.setBool(isStarred, forKey: "isStarredForId\(id)")
+
+        }
+
     }
 }
