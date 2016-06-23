@@ -54,7 +54,6 @@ public class ConnectionManager{
         Alamofire.request(.DELETE, "http://127.0.0.1:8088/api/message/\(id)", parameters:nil)
             .responseJSON { response in
                 if let json = response.result.value{
-//                    let dataDictionary = json as! NSDictionary
                     print(json)
                     completion(true)
                 }

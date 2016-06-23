@@ -19,17 +19,17 @@ class DetailedEmailViewController: UIViewController, UITableViewDelegate,UITable
     
     @IBAction func backButtonPressed(sender: AnyObject) {
         delegate.tableView.reloadData()
-        self.dismissViewControllerAnimated(true, completion: nil)
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.addSubview(refreshControl)
-        self.tableView.registerNib(UINib(nibName: "DetailedEmailCells", bundle: nil), forCellReuseIdentifier:"DetailedTableViewCellOne")
+        tableView.registerNib(UINib(nibName: "DetailedEmailCells", bundle: nil), forCellReuseIdentifier:"DetailedTableViewCellOne")
         currentEmailAttributeObject = ConnectionManager.fetchEmailAttributeForIndex(currentEmailId!)
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-        self.tableView.separatorStyle = .None
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.separatorStyle = .None
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -57,8 +57,8 @@ class DetailedEmailViewController: UIViewController, UITableViewDelegate,UITable
         case 0:
             let str:NSString = (currentEmailAttributeObject?.subject)!
             let str2:NSString = (currentEmailAttributeObject?.participants.joinWithSeparator(","))!
-            let firstLinesize = self.heightNeededForText(str, withFont: UIFont.systemFontOfSize(20.0), width: self.tableView.frame.size.width, lineBreakMode: NSLineBreakMode.ByWordWrapping)
-            let secondLineSize = self.heightNeededForText(str2, withFont: UIFont.systemFontOfSize(20.0), width: self.tableView.frame.size.width, lineBreakMode: NSLineBreakMode.ByWordWrapping)
+            let firstLinesize =  heightNeededForText(str, withFont: UIFont.systemFontOfSize(20.0), width:  tableView.frame.size.width, lineBreakMode: NSLineBreakMode.ByWordWrapping)
+            let secondLineSize =  heightNeededForText(str2, withFont: UIFont.systemFontOfSize(20.0), width:  tableView.frame.size.width, lineBreakMode: NSLineBreakMode.ByWordWrapping)
             return firstLinesize + secondLineSize + 20;
             
         case 1:
@@ -67,7 +67,7 @@ class DetailedEmailViewController: UIViewController, UITableViewDelegate,UITable
         case 2:
             if emailBody != nil {
                 let str:NSString = emailBody!
-                let firstLinesize = self.heightNeededForText(str, withFont: UIFont.systemFontOfSize(16.0), width: self.tableView.frame.size.width, lineBreakMode: NSLineBreakMode.ByWordWrapping)
+                let firstLinesize =  heightNeededForText(str, withFont: UIFont.systemFontOfSize(16.0), width:  tableView.frame.size.width, lineBreakMode: NSLineBreakMode.ByWordWrapping)
                 return firstLinesize;
             }
             else
@@ -82,7 +82,7 @@ class DetailedEmailViewController: UIViewController, UITableViewDelegate,UITable
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = self.tableView.dequeueReusableCellWithIdentifier("DetailedTableViewCellOne", forIndexPath: indexPath) as! DetailedEmailCells
+        let cell =  tableView.dequeueReusableCellWithIdentifier("DetailedTableViewCellOne", forIndexPath: indexPath) as! DetailedEmailCells
         cell.contentView.userInteractionEnabled = false
         switch indexPath.row
         {
@@ -107,7 +107,6 @@ class DetailedEmailViewController: UIViewController, UITableViewDelegate,UITable
                 let defaults = NSUserDefaults.standardUserDefaults()
                 if defaults.boolForKey("isStarredForId\(self.currentEmailId!)") {
                     cell.starOrOptionImage.setBackgroundImage(UIImage(named: "unstarred.png"), forState: UIControlState.Normal)
-//                    defaults.setBool(false, forKey: "isStarredForId\(self.currentEmailId!)")
                     self.delegate.emailAttributesArray[self.currentEmailId! - 1].isStarred = false
                     self.tableView.setNeedsLayout()
                     self.tableView.layoutSubviews()
@@ -117,7 +116,6 @@ class DetailedEmailViewController: UIViewController, UITableViewDelegate,UITable
                 else
                 {
                     cell.starOrOptionImage.setBackgroundImage(UIImage(named: "starred.png"), forState: UIControlState.Normal)
-//                    defaults.setBool(true, forKey: "isStarredForId\(self.currentEmailId!)")
                     self.delegate.emailAttributesArray[self.currentEmailId! - 1].isStarred = true
                     self.tableView.setNeedsLayout()
                     self.tableView.layoutSubviews()

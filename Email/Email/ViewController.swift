@@ -21,11 +21,11 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.emptyImageView.hidden = true
+        emptyImageView.hidden = true
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(receiveNetworkNotification), name:"kReachabilityChangedNotification", object: nil)
         tableView.addSubview(refreshControl)
-        self.tableView.registerNib(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier:"TableViewCell")
-        self.tableView.separatorStyle = .None
+        tableView.registerNib(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier:"TableViewCell")
+        tableView.separatorStyle = .None
         handleRefresh()
         
         // Do any additional setup after loading the view, typically from a nib.
@@ -35,7 +35,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         ConnectionManager.emailAttributesArray.removeAll()
         ConnectionManager.fetchData({(array:NSArray) in
             self.emailAttributesArray = array as! [EmailAttributes]
-            if self.emailAttributesArray.count == 0{
+            if  self.emailAttributesArray.count == 0{
                 self.loadingView.hidden = true
                 self.emptyImageView.hidden = false
                 self.tableView.hidden = true
@@ -58,14 +58,14 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     
     func checkAndUpdateMailCount(){
-        self.emailUnreadCount = 0
-        for emailAttribute in self.emailAttributesArray
+        emailUnreadCount = 0
+        for emailAttribute in  emailAttributesArray
         {
             if emailAttribute.isRead == false{
-                self.emailUnreadCount = self.emailUnreadCount + 1
+                emailUnreadCount =  emailUnreadCount + 1
             }
         }
-        self.unreadEmailCountLabel.text = "Inbox(\(self.emailUnreadCount))"
+        unreadEmailCountLabel.text = "Inbox(\( emailUnreadCount))"
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -82,13 +82,12 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var isStarred = false
-        let cell = self.tableView.dequeueReusableCellWithIdentifier("TableViewCell", forIndexPath: indexPath) as! CustomTableViewCell
+        let cell =  tableView.dequeueReusableCellWithIdentifier("TableViewCell", forIndexPath: indexPath) as! CustomTableViewCell
         cell.backgroundColor = UIColor.groupTableViewBackgroundColor()
-        cell.nameLabel.text = self.emailAttributesArray[indexPath.row].participants[0]
-        cell.previewLabel.text = self.emailAttributesArray[indexPath.row].preview
-        cell.subjectLabel.text = self.emailAttributesArray[indexPath.row].subject
-        cell.roundView.hidden = self.emailAttributesArray[indexPath.row].isRead
+        cell.nameLabel.text =  emailAttributesArray[indexPath.row].participants[0]
+        cell.previewLabel.text =  emailAttributesArray[indexPath.row].preview
+        cell.subjectLabel.text =  emailAttributesArray[indexPath.row].subject
+        cell.roundView.hidden =  emailAttributesArray[indexPath.row].isRead
         cell.bringSubviewToFront(cell.starredImageView)
         cell.contentView.userInteractionEnabled = false
         if cell.roundView.hidden == false {
@@ -100,18 +99,18 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             cell.nameLabel.font = normalFont
         }
         let defaults = NSUserDefaults.standardUserDefaults()
-        if (defaults.boolForKey("isStarredForId\(self.emailAttributesArray[indexPath.row].id)")) {
+        if (defaults.boolForKey("isStarredForId\( emailAttributesArray[indexPath.row].id)")) {
             cell.starredImageView.setBackgroundImage(UIImage(named: "starred.png"), forState: UIControlState.Normal)
         }
         else{
             cell.starredImageView.setBackgroundImage(UIImage(named: "unstarred.png"), forState: UIControlState.Normal)
         }
         cell.starredImageViewTappedClosure = {() in
-            if defaults.boolForKey("isStarredForId\(self.emailAttributesArray[indexPath.row].id)") {
+            if defaults.boolForKey("isStarredForId\( self.emailAttributesArray[indexPath.row].id)") {
                 cell.starredImageView.setBackgroundImage(UIImage(named: "unstarred.png"), forState: UIControlState.Normal)
                 self.emailAttributesArray[indexPath.row].isStarred = false
-                self.tableView.setNeedsLayout()
-                self.tableView.layoutSubviews()
+                tableView.setNeedsLayout()
+                tableView.layoutSubviews()
                 cell.setNeedsLayout()
                 cell.layoutSubviews()
             }
@@ -119,8 +118,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             {
                 cell.starredImageView.setBackgroundImage(UIImage(named: "starred.png"), forState: UIControlState.Normal)
                 self.emailAttributesArray[indexPath.row].isStarred = true
-                self.tableView.setNeedsLayout()
-                self.tableView.layoutSubviews()
+                tableView.setNeedsLayout()
+                tableView.layoutSubviews()
                 cell.setNeedsLayout()
                 cell.layoutSubviews()
             }
@@ -158,12 +157,12 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         emailAttributesArray[indexPath.row].isRead = true
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         tableView.reloadData()
-        self.checkAndUpdateMailCount()
+        checkAndUpdateMailCount()
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewControllerWithIdentifier("detailVC") as! DetailedEmailViewController
         vc.delegate = self
         vc.currentEmailId = emailAttributesArray[indexPath.row].id
-        self.presentViewController(vc, animated: true, completion: nil)
+        presentViewController(vc, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {
