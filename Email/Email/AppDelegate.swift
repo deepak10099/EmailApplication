@@ -6,10 +6,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var reachability:Reachability!;
     var networkStatus : NetworkStatus!
-    
     var window: UIWindow?
-    
-    
+
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("receiveNetworkNotification:"), name:"kReachabilityChangedNotification", object: nil)

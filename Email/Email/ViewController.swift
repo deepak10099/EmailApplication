@@ -10,6 +10,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     @IBOutlet weak var tableView: UITableView!
     let defaults = NSUserDefaults.standardUserDefaults()
     var emailUnreadCount = 0
+    var longPressOnCell = false
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(handleRefresh), forControlEvents: UIControlEvents.ValueChanged)
@@ -19,14 +20,12 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.allowsMultipleSelection = true
         emptyImageView.hidden = true
-        //       NSNotificationCenter().addObserver(self, selector:#selector(ViewController.receiveNetworkNotification(_:)), name: kReachabilityChangedNotification, object: nil)
         tableView.addSubview(refreshControl)
         tableView.registerNib(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier:"TableViewCell")
         tableView.separatorStyle = .None
         handleRefresh()
-        
-        // Do any additional setup after loading the view, typically from a nib.
     }
     
     func handleRefresh(refreshControl: UIRefreshControl? = nil) {
@@ -89,6 +88,10 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         cell.roundView.hidden =  (defaults.boolForKey("isReadForId\( emailAttributesArray[indexPath.row].id)"))
         cell.bringSubviewToFront(cell.starredImageView)
         cell.contentView.userInteractionEnabled = false
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: Selector("handleLongPressGesture:"))
+        longPressGesture.minimumPressDuration = 1.0;
+        cell.addGestureRecognizer(longPressGesture)
         if cell.roundView.hidden == false {
             let boldFont = UIFont.boldSystemFontOfSize(20.0)
             cell.nameLabel.font = boldFont
@@ -124,7 +127,11 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         }
         return cell
     }
-    
+
+    func tableView(tableView: UITableView, didHighlightRowAtIndexPath indexPath: NSIndexPath) {
+        print("highlight")
+    }
+
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
     }
@@ -152,8 +159,20 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             deleteEmailWithIndexPathRow(indexPath.row)
         }
     }
-    
+
+    func updateSelectedCellCount(){
+        print("Selected cells: \(tableView.indexPathsForSelectedRows?.count)")
+    }
+
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if longPressOnCell{
+            let cell = tableView.cellForRowAtIndexPath(indexPath)
+            cell?.setSelected(true, animated: true)
+            tableView.cellForRowAtIndexPath(indexPath)?.backgroundColor = UIColor.lightGrayColor()
+            print("Selected cells: \(tableView.indexPathsForSelectedRows?.count)")
+            updateSelectedCellCount()
+            return
+        }
         emailAttributesArray[indexPath.row].isRead = true
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         tableView.reloadData()
@@ -164,12 +183,41 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         vc.currentEmailId = emailAttributesArray[indexPath.row].id
         presentViewController(vc, animated: true, completion: nil)
     }
-    
+
+    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        print("deselect")
+        tableView.cellForRowAtIndexPath(indexPath)?.backgroundColor = UIColor.clearColor()
+        print("Selected cells: \(tableView.indexPathsForSelectedRows?.count)")
+    }
+    func handleLongPressGesture(gestureRecognizer:UILongPressGestureRecognizer)  {
+        let tappedPoint = gestureRecognizer.locationInView(tableView)
+        let indexPathOfTappedCell = tableView.indexPathForRowAtPoint(tappedPoint)
+        if indexPathOfTappedCell == nil {
+            print("long press on table view but not on a row")
+        }
+        else
+        {
+            if (gestureRecognizer.state ==  UIGestureRecognizerState.Began)
+            {
+                if longPressOnCell == false{
+                    print("Long press on table view at row \(indexPathOfTappedCell?.row)")
+                    longPressOnCell = true
+                    tableView.selectRowAtIndexPath(indexPathOfTappedCell, animated: true, scrollPosition: UITableViewScrollPosition.None)
+                    tableView.cellForRowAtIndexPath(indexPathOfTappedCell!)?.backgroundColor = UIColor.lightGrayColor()
+                    updateSelectedCellCount()
+                }
+//                else{
+//                    longPressOnCell = false
+//                    for row in tableView.indexPathsForSelectedRows!{
+//                        tableView.deselectRowAtIndexPath(row, animated: true)
+//                    }
+//                }
+            }
+        }
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
 }
-
-

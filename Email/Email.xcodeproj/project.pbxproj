@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		004B2F051D1D1497007BD610 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 004B2EF81D1D1482007BD610 /* Alamofire.framework */; };
 		004B2F061D1D1497007BD610 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 004B2EF81D1D1482007BD610 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		004B2F0A1D1D1A97007BD610 /* ActionBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 004B2F091D1D1A97007BD610 /* ActionBarView.xib */; };
+		004B2F0C1D1D1AC7007BD610 /* ActionBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004B2F0B1D1D1AC7007BD610 /* ActionBarView.swift */; };
 		5B3931AB1D1A5CEA0054045A /* DetailedEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3931AA1D1A5CEA0054045A /* DetailedEmailViewController.swift */; };
 		5B769D411D1A68E4006B0908 /* DetailedEmailCells.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B769D401D1A68E4006B0908 /* DetailedEmailCells.xib */; };
 		5B769D491D1A6BC5006B0908 /* DetailedEmailCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B769D481D1A6BC5006B0908 /* DetailedEmailCells.swift */; };
@@ -118,6 +120,8 @@
 
 /* Begin PBXFileReference section */
 		004B2EED1D1D1482007BD610 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "Alamofire-master/Alamofire.xcodeproj"; sourceTree = SOURCE_ROOT; };
+		004B2F091D1D1A97007BD610 /* ActionBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActionBarView.xib; sourceTree = "<group>"; };
+		004B2F0B1D1D1AC7007BD610 /* ActionBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionBarView.swift; sourceTree = "<group>"; };
 		5B3931AA1D1A5CEA0054045A /* DetailedEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailedEmailViewController.swift; sourceTree = "<group>"; };
 		5B769D401D1A68E4006B0908 /* DetailedEmailCells.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailedEmailCells.xib; sourceTree = "<group>"; };
 		5B769D481D1A6BC5006B0908 /* DetailedEmailCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailedEmailCells.swift; sourceTree = "<group>"; };
@@ -201,6 +205,8 @@
 				5BCE70AC1D190C7200224D43 /* CustomTableViewCell.xib */,
 				5B769D481D1A6BC5006B0908 /* DetailedEmailCells.swift */,
 				5B769D401D1A68E4006B0908 /* DetailedEmailCells.xib */,
+				004B2F0B1D1D1AC7007BD610 /* ActionBarView.swift */,
+				004B2F091D1D1A97007BD610 /* ActionBarView.xib */,
 				5BCE707A1D19083C00224D43 /* Main.storyboard */,
 			);
 			name = View;
@@ -477,6 +483,7 @@
 				5BCE70B51D1945AE00224D43 /* starred.png in Resources */,
 				5BB79BB51D1C104000F4C62A /* empty.png in Resources */,
 				5BCE707E1D19083C00224D43 /* Assets.xcassets in Resources */,
+				004B2F0A1D1D1A97007BD610 /* ActionBarView.xib in Resources */,
 				5B769D411D1A68E4006B0908 /* DetailedEmailCells.xib in Resources */,
 				5BCE70AD1D190C7200224D43 /* CustomTableViewCell.xib in Resources */,
 				5BCE707C1D19083C00224D43 /* Main.storyboard in Resources */,
@@ -505,6 +512,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BCE70AB1D190C0400224D43 /* CustomTableViewCell.swift in Sources */,
+				004B2F0C1D1D1AC7007BD610 /* ActionBarView.swift in Sources */,
 				5B3931AB1D1A5CEA0054045A /* DetailedEmailViewController.swift in Sources */,
 				5BB79BA71D1BB5F400F4C62A /* Reachability.m in Sources */,
 				5B769D491D1A6BC5006B0908 /* DetailedEmailCells.swift in Sources */,
