@@ -2,8 +2,8 @@ import UIKit
 import Alamofire
 
 class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
-    
-    
+
+
     @IBOutlet weak var animatableHeader: UIView!
     @IBOutlet weak var emptyImageView: UIImageView!
     @IBOutlet weak var unreadEmailCountLabel: UILabel!
@@ -18,11 +18,26 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         return refreshControl
     }()
     var emailAttributesArray = [EmailAttributes]()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         let customView = NSBundle.mainBundle().loadNibNamed("ActionBarView", owner: self, options: nil)[0] as! ActionBarView
         animatableHeader.addSubview(customView)
+        customView.closeButtonTappedClosure = { ()->() in
+            if let selectedCellsArray = self.tableView.indexPathsForSelectedRows
+            {
+                for indexPathOfSelectedCells in selectedCellsArray {
+                    self.tableView.deselectRowAtIndexPath(indexPathOfSelectedCells, animated: false)
+                    self.tableView.cellForRowAtIndexPath(indexPathOfSelectedCells)?.backgroundColor = UIColor.clearColor()
+                    self.longPressOnCell = false
+                }
+            }
+        }
+        customView.readUnreadButtonTappedClosure = { ()->() in
+        }
+        customView.deleteButtonTappedClosure = { ()->() in
+
+        }
         tableView.allowsMultipleSelection = true
         emptyImageView.hidden = true
         tableView.addSubview(refreshControl)
@@ -30,7 +45,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         tableView.separatorStyle = .None
         handleRefresh()
     }
-    
+
     func handleRefresh(refreshControl: UIRefreshControl? = nil) {
         ConnectionManager.emailAttributesArray.removeAll()
         ConnectionManager.fetchData({(array:NSArray) in
@@ -56,7 +71,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             }
         })
     }
-    
+
     func checkAndUpdateMailCount(){
         emailUnreadCount = 0
         for emailAttribute in  emailAttributesArray
@@ -68,20 +83,20 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         }
         unreadEmailCountLabel.text = "Inbox(\( emailUnreadCount))"
     }
-    
+
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
-    
+
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print("count: \(emailAttributesArray.count)")
         return emailAttributesArray.count
     }
-    
+
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 118.0
     }
-    
+
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell =  tableView.dequeueReusableCellWithIdentifier("TableViewCell", forIndexPath: indexPath) as! CustomTableViewCell
         cell.backgroundColor = UIColor.groupTableViewBackgroundColor()
@@ -138,7 +153,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
     }
-    
+
     func deleteEmailWithIndexPathRow(indexPathRow:Int) -> Void {
         loadingView.hidden = false
         ConnectionManager.deleteEmail(emailAttributesArray[indexPathRow].id, completion: { (isSuccess) in
@@ -154,9 +169,9 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                 appDelegate.showAlertViewWithMessage("Email not deleted. Check your network connection or try again later.", title: "Failure!")
             }})
     }
-    
+
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        
+
         if editingStyle == .Delete
         {
             deleteEmailWithIndexPathRow(indexPath.row)
