@@ -4,6 +4,7 @@ import Alamofire
 class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     
+    @IBOutlet weak var animatableHeader: UIView!
     @IBOutlet weak var emptyImageView: UIImageView!
     @IBOutlet weak var unreadEmailCountLabel: UILabel!
     @IBOutlet weak var loadingView: UIView!
@@ -20,6 +21,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let customView = NSBundle.mainBundle().loadNibNamed("ActionBarView", owner: self, options: nil)[0] as! ActionBarView
+        animatableHeader.addSubview(customView)
         tableView.allowsMultipleSelection = true
         emptyImageView.hidden = true
         tableView.addSubview(refreshControl)
@@ -202,6 +205,13 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                 if longPressOnCell == false{
                     print("Long press on table view at row \(indexPathOfTappedCell?.row)")
                     longPressOnCell = true
+                    UIView.animateWithDuration(0.2, delay: 0, options: .CurveEaseOut, animations: {
+                        self.animatableHeader.frame = self.unreadEmailCountLabel.frame
+                        self.view.setNeedsLayout()
+                        self.view.layoutSubviews()
+                        }, completion: { finished in
+
+                    })
                     tableView.selectRowAtIndexPath(indexPathOfTappedCell, animated: true, scrollPosition: UITableViewScrollPosition.None)
                     tableView.cellForRowAtIndexPath(indexPathOfTappedCell!)?.backgroundColor = UIColor.lightGrayColor()
                     updateSelectedCellCount()

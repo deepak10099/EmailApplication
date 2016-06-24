@@ -21,16 +21,19 @@ class DetailedEmailViewController: UIViewController, UITableViewDelegate,UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         let customView = NSBundle.mainBundle().loadNibNamed("ActionBarView", owner: self, options: nil)[0] as! ActionBarView
+        headerView.addSubview(customView)
+
         customView.deleteButtonTappedClosure = { ()->() in
         }
+
         customView.closeButtonTappedClosure = { ()->() in
             self.delegate.tableView.reloadData()
             self.dismissViewControllerAnimated(true, completion: nil)
         }
+
         customView.readUnreadButtonTappedClosure = { ()->() in
 
         }
-        headerView.addSubview(customView)
 
 
         tableView.addSubview(refreshControl)

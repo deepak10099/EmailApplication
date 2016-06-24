@@ -39,12 +39,20 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cY0-Ho-2f2" userLabel="AnimatableHeader">
+                                        <rect key="frame" x="0.0" y="-77" width="320" height="62"/>
+                                        <color key="backgroundColor" red="0.40000000600000002" green="0.40000000600000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstAttribute="top" secondItem="cY0-Ho-2f2" secondAttribute="bottom" constant="15" id="Mqb-wR-ykL"/>
                                     <constraint firstItem="3jQ-OO-pXm" firstAttribute="centerY" secondItem="0Ju-iF-qeE" secondAttribute="centerY" id="RuG-n7-A0L"/>
+                                    <constraint firstItem="cY0-Ho-2f2" firstAttribute="height" secondItem="0Ju-iF-qeE" secondAttribute="height" id="ZdJ-52-RJZ"/>
+                                    <constraint firstItem="cY0-Ho-2f2" firstAttribute="centerX" secondItem="0Ju-iF-qeE" secondAttribute="centerX" id="dAg-Kl-FyP"/>
                                     <constraint firstItem="3jQ-OO-pXm" firstAttribute="centerX" secondItem="0Ju-iF-qeE" secondAttribute="centerX" id="eob-Nx-gPO"/>
                                     <constraint firstItem="3jQ-OO-pXm" firstAttribute="height" secondItem="0Ju-iF-qeE" secondAttribute="height" id="hog-wy-yNc"/>
+                                    <constraint firstItem="cY0-Ho-2f2" firstAttribute="width" secondItem="0Ju-iF-qeE" secondAttribute="width" id="r70-TY-bci"/>
                                     <constraint firstItem="3jQ-OO-pXm" firstAttribute="width" secondItem="0Ju-iF-qeE" secondAttribute="width" id="v1p-rT-psb"/>
                                 </constraints>
                             </view>
@@ -96,6 +104,7 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="animatableHeader" destination="cY0-Ho-2f2" id="nRt-j0-0Cq"/>
                         <outlet property="emptyImageView" destination="O0l-Jg-NQu" id="Q7S-tT-JgU"/>
                         <outlet property="loadingView" destination="7ly-1e-9Ey" id="E1A-OK-gMk"/>
                         <outlet property="tableView" destination="QRa-Dd-c1e" id="EJL-Eq-bE4"/>
