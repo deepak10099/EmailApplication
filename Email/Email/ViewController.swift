@@ -19,7 +19,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
         emptyImageView.hidden = true
-//       NSNotificationCenter().addObserver(self, selector:#selector(ViewController.receiveNetworkNotification(_:)), name: kReachabilityChangedNotification, object: nil)
+        //       NSNotificationCenter().addObserver(self, selector:#selector(ViewController.receiveNetworkNotification(_:)), name: kReachabilityChangedNotification, object: nil)
         tableView.addSubview(refreshControl)
         tableView.registerNib(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier:"TableViewCell")
         tableView.separatorStyle = .None
@@ -134,12 +134,14 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             if isSuccess == true
             {
                 self.handleRefresh()
-                UIAlertView(title:"Success!", message: "Email deleted successfully", delegate: nil, cancelButtonTitle: "OK").show()
+                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                appDelegate.showAlertViewWithMessage("Email deleted successfully", title: "Success!")
             }
             else
             {
-                UIAlertView(title:"Failure!", message: "Email not deleted. Check your network connection or try again later.", delegate: nil, cancelButtonTitle: "OK").show()            }
-        })
+                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                appDelegate.showAlertViewWithMessage("Email not deleted. Check your network connection or try again later.", title: "Failure!")
+            }})
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
