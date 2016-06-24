@@ -8,6 +8,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     @IBOutlet weak var unreadEmailCountLabel: UILabel!
     @IBOutlet weak var loadingView: UIView!
     @IBOutlet weak var tableView: UITableView!
+    let defaults = NSUserDefaults.standardUserDefaults()
     var emailUnreadCount = 0
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -58,7 +59,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         emailUnreadCount = 0
         for emailAttribute in  emailAttributesArray
         {
-            if emailAttribute.isRead == false{
+            if !defaults.boolForKey("isReadForId\( emailAttribute.id)")
+            {
                 emailUnreadCount =  emailUnreadCount + 1
             }
         }
@@ -79,7 +81,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let defaults = NSUserDefaults.standardUserDefaults()
         let cell =  tableView.dequeueReusableCellWithIdentifier("TableViewCell", forIndexPath: indexPath) as! CustomTableViewCell
         cell.backgroundColor = UIColor.groupTableViewBackgroundColor()
         cell.nameLabel.text =  emailAttributesArray[indexPath.row].participants[0]
@@ -103,7 +104,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             cell.starredImageView.setBackgroundImage(UIImage(named: "unstarred.png"), forState: UIControlState.Normal)
         }
         cell.starredImageViewTappedClosure = {() in
-            if defaults.boolForKey("isStarredForId\( self.emailAttributesArray[indexPath.row].id)") {
+            if self.defaults.boolForKey("isStarredForId\( self.emailAttributesArray[indexPath.row].id)") {
                 cell.starredImageView.setBackgroundImage(UIImage(named: "unstarred.png"), forState: UIControlState.Normal)
                 self.emailAttributesArray[indexPath.row].isStarred = false
                 tableView.setNeedsLayout()
