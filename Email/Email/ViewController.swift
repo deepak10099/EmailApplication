@@ -206,12 +206,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                     tableView.cellForRowAtIndexPath(indexPathOfTappedCell!)?.backgroundColor = UIColor.lightGrayColor()
                     updateSelectedCellCount()
                 }
-//                else{
-//                    longPressOnCell = false
-//                    for row in tableView.indexPathsForSelectedRows!{
-//                        tableView.deselectRowAtIndexPath(row, animated: true)
-//                    }
-//                }
             }
         }
     }

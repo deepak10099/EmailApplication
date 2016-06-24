@@ -4,6 +4,7 @@ import UIKit
 
 class DetailedEmailViewController: UIViewController, UITableViewDelegate,UITableViewDataSource {
     
+    @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var tableView: UITableView!
     let boldFont = UIFont.boldSystemFontOfSize(16.0)
     let normalFont = UIFont.systemFontOfSize(14.0)
@@ -17,13 +18,21 @@ class DetailedEmailViewController: UIViewController, UITableViewDelegate,UITable
         return refreshControl
     }()
     
-    @IBAction func backButtonPressed(sender: AnyObject) {
-        delegate.tableView.reloadData()
-        dismissViewControllerAnimated(true, completion: nil)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        let customView = NSBundle.mainBundle().loadNibNamed("ActionBarView", owner: self, options: nil)[0] as! ActionBarView
+        customView.deleteButtonTappedClosure = { ()->() in
+        }
+        customView.closeButtonTappedClosure = { ()->() in
+            self.delegate.tableView.reloadData()
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
+        customView.readUnreadButtonTappedClosure = { ()->() in
+
+        }
+        headerView.addSubview(customView)
+
+
         tableView.addSubview(refreshControl)
         tableView.registerNib(UINib(nibName: "DetailedEmailCells", bundle: nil), forCellReuseIdentifier:"DetailedTableViewCellOne")
         currentEmailAttributeObject = ConnectionManager.fetchEmailAttributeForIndex(currentEmailId!)
