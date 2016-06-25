@@ -17,7 +17,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         refreshControl.addTarget(self, action: #selector(handleRefresh), forControlEvents: UIControlEvents.ValueChanged)
         return refreshControl
     }()
-    var emailAttributesArray = [EmailAttributes]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,9 +33,15 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             }
         }
         customView.readUnreadButtonTappedClosure = { ()->() in
+
         }
         customView.deleteButtonTappedClosure = { ()->() in
-
+            if let selectedCellsArray = self.tableView.indexPathsForSelectedRows
+            {
+                for indexPathOfSelectedCells in selectedCellsArray {
+                    self.deleteEmailWithIndexPathRow(indexPathOfSelectedCells.row)
+                }
+            }
         }
         tableView.allowsMultipleSelection = true
         emptyImageView.hidden = true
@@ -49,8 +54,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     func handleRefresh(refreshControl: UIRefreshControl? = nil) {
         ConnectionManager.emailAttributesArray.removeAll()
         ConnectionManager.fetchData({(array:NSArray) in
-            self.emailAttributesArray = array as! [EmailAttributes]
-            if  self.emailAttributesArray.count == 0{
+            ConnectionManager.emailAttributesArray = array as! [EmailAttributes]
+            if  ConnectionManager.emailAttributesArray.count == 0{
                 self.loadingView.hidden = true
                 self.emptyImageView.hidden = false
                 self.tableView.hidden = true
@@ -74,7 +79,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
 
     func checkAndUpdateMailCount(){
         emailUnreadCount = 0
-        for emailAttribute in  emailAttributesArray
+        for emailAttribute in  ConnectionManager.emailAttributesArray
         {
             if !defaults.boolForKey("isReadForId\( emailAttribute.id)")
             {
@@ -89,8 +94,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("count: \(emailAttributesArray.count)")
-        return emailAttributesArray.count
+        print("count: \(ConnectionManager.emailAttributesArray.count)")
+        return ConnectionManager.emailAttributesArray.count
     }
 
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -100,15 +105,15 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell =  tableView.dequeueReusableCellWithIdentifier("TableViewCell", forIndexPath: indexPath) as! CustomTableViewCell
         cell.backgroundColor = UIColor.groupTableViewBackgroundColor()
-        cell.nameLabel.text =  emailAttributesArray[indexPath.row].participants[0]
-        cell.previewLabel.text =  emailAttributesArray[indexPath.row].preview
-        cell.subjectLabel.text =  emailAttributesArray[indexPath.row].subject
-        cell.roundView.hidden =  (defaults.boolForKey("isReadForId\( emailAttributesArray[indexPath.row].id)"))
+        cell.nameLabel.text =  ConnectionManager.emailAttributesArray[indexPath.row].participants[0]
+        cell.previewLabel.text =  ConnectionManager.emailAttributesArray[indexPath.row].preview
+        cell.subjectLabel.text =  ConnectionManager.emailAttributesArray[indexPath.row].subject
+        cell.roundView.hidden =  (defaults.boolForKey("isReadForId\( ConnectionManager.emailAttributesArray[indexPath.row].id)"))
         cell.bringSubviewToFront(cell.starredImageView)
         cell.contentView.userInteractionEnabled = false
         cell.selectionStyle = UITableViewCellSelectionStyle.None
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: Selector("handleLongPressGesture:"))
-        longPressGesture.minimumPressDuration = 1.0;
+        longPressGesture.minimumPressDuration = 0.5;
         cell.addGestureRecognizer(longPressGesture)
         if cell.roundView.hidden == false {
             let boldFont = UIFont.boldSystemFontOfSize(20.0)
@@ -118,16 +123,16 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             let normalFont = UIFont.systemFontOfSize(20.0)
             cell.nameLabel.font = normalFont
         }
-        if (defaults.boolForKey("isStarredForId\( emailAttributesArray[indexPath.row].id)")) {
+        if (defaults.boolForKey("isStarredForId\( ConnectionManager.emailAttributesArray[indexPath.row].id)")) {
             cell.starredImageView.setBackgroundImage(UIImage(named: "starred.png"), forState: UIControlState.Normal)
         }
         else{
             cell.starredImageView.setBackgroundImage(UIImage(named: "unstarred.png"), forState: UIControlState.Normal)
         }
         cell.starredImageViewTappedClosure = {() in
-            if self.defaults.boolForKey("isStarredForId\( self.emailAttributesArray[indexPath.row].id)") {
+            if self.defaults.boolForKey("isStarredForId\( ConnectionManager.emailAttributesArray[indexPath.row].id)") {
                 cell.starredImageView.setBackgroundImage(UIImage(named: "unstarred.png"), forState: UIControlState.Normal)
-                self.emailAttributesArray[indexPath.row].isStarred = false
+                ConnectionManager.emailAttributesArray[indexPath.row].isStarred = false
                 tableView.setNeedsLayout()
                 tableView.layoutSubviews()
                 cell.setNeedsLayout()
@@ -136,7 +141,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             else
             {
                 cell.starredImageView.setBackgroundImage(UIImage(named: "starred.png"), forState: UIControlState.Normal)
-                self.emailAttributesArray[indexPath.row].isStarred = true
+                ConnectionManager.emailAttributesArray[indexPath.row].isStarred = true
                 tableView.setNeedsLayout()
                 tableView.layoutSubviews()
                 cell.setNeedsLayout()
@@ -156,7 +161,12 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
 
     func deleteEmailWithIndexPathRow(indexPathRow:Int) -> Void {
         loadingView.hidden = false
-        ConnectionManager.deleteEmail(emailAttributesArray[indexPathRow].id, completion: { (isSuccess) in
+        ConnectionManager.deleteEmail(ConnectionManager.emailAttributesArray[indexPathRow].id, completion: { (isSuccess) in
+            if self.tableView.indexPathsForSelectedRows?.count>1
+            {
+                self.handleRefresh()
+                return
+            }
             if isSuccess == true
             {
                 self.handleRefresh()
@@ -191,14 +201,14 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             updateSelectedCellCount()
             return
         }
-        emailAttributesArray[indexPath.row].isRead = true
+        ConnectionManager.emailAttributesArray[indexPath.row].isRead = true
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         tableView.reloadData()
         checkAndUpdateMailCount()
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewControllerWithIdentifier("detailVC") as! DetailedEmailViewController
         vc.delegate = self
-        vc.currentEmailId = emailAttributesArray[indexPath.row].id
+        vc.currentEmailId = ConnectionManager.emailAttributesArray[indexPath.row].id
         presentViewController(vc, animated: true, completion: nil)
     }
 

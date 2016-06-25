@@ -9,11 +9,13 @@ public class ConnectionManager{
     class func fetchData(completion:(NSArray)->Void) {
         Alamofire.request(.GET, "http://127.0.0.1:8088/api/message/", parameters:nil)
             .responseJSON { response in
+                var temporaryEmailAttributesArray:[EmailAttributes] = []
                 if let json = response.result.value{
                     for element in (json as! NSArray)
                     {
-                        emailAttributesArray.append(EmailAttributes(dictionary: element as![String : AnyObject]))
+                        temporaryEmailAttributesArray.append(EmailAttributes(dictionary: element as![String : AnyObject]))
                     }
+                    emailAttributesArray = temporaryEmailAttributesArray
                     completion(emailAttributesArray)
                 }
         }
