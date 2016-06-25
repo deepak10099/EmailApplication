@@ -20,25 +20,31 @@ class DetailedEmailViewController: UIViewController, UITableViewDelegate,UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        currentEmailAttributeObject = ConnectionManager.fetchEmailAttributeForIndex(currentEmailId!)
         let customView = NSBundle.mainBundle().loadNibNamed("ActionBarView", owner: self, options: nil)[0] as! ActionBarView
-        headerView.addSubview(customView)
 
+        self.view.setNeedsLayout()
+        self.view.layoutSubviews()
+        headerView.addSubview(customView)
         customView.deleteButtonTappedClosure = { ()->() in
+            ConnectionManager.deleteEmail((self.currentEmailAttributeObject?.id)!, completion: { (success) in
+                self.delegate.handleRefresh()
+                self.dismissViewControllerAnimated(true, completion: nil)
+            })
         }
 
         customView.closeButtonTappedClosure = { ()->() in
-            self.delegate.tableView.reloadData()
+            self.delegate.handleRefresh()
             self.dismissViewControllerAnimated(true, completion: nil)
         }
 
         customView.readUnreadButtonTappedClosure = { ()->() in
-
+            self.currentEmailAttributeObject?.isRead = false
         }
 
 
         tableView.addSubview(refreshControl)
         tableView.registerNib(UINib(nibName: "DetailedEmailCells", bundle: nil), forCellReuseIdentifier:"DetailedTableViewCellOne")
-        currentEmailAttributeObject = ConnectionManager.fetchEmailAttributeForIndex(currentEmailId!)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .None
@@ -119,7 +125,7 @@ class DetailedEmailViewController: UIViewController, UITableViewDelegate,UITable
                 let defaults = NSUserDefaults.standardUserDefaults()
                 if defaults.boolForKey("isStarredForId\(self.currentEmailId!)") {
                     cell.starOrOptionImage.setBackgroundImage(UIImage(named: "unstarred.png"), forState: UIControlState.Normal)
-                    ConnectionManager.emailAttributesArray[self.currentEmailId! - 1].isStarred = false
+                    self.currentEmailAttributeObject!.isStarred = false
                     self.tableView.setNeedsLayout()
                     self.tableView.layoutSubviews()
                     cell.setNeedsLayout()
@@ -128,7 +134,7 @@ class DetailedEmailViewController: UIViewController, UITableViewDelegate,UITable
                 else
                 {
                     cell.starOrOptionImage.setBackgroundImage(UIImage(named: "starred.png"), forState: UIControlState.Normal)
-                    ConnectionManager.emailAttributesArray[self.currentEmailId! - 1].isStarred = true
+                    self.currentEmailAttributeObject!.isStarred = true
                     self.tableView.setNeedsLayout()
                     self.tableView.layoutSubviews()
                     cell.setNeedsLayout()

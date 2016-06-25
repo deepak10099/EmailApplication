@@ -182,7 +182,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         return true
     }
 
-    func deleteEmailWithIndexPathRow(indexPathRow:Int) -> Void {
+    func deleteEmailWithIndexPathRow(indexPathRow:Int, emailAttributesId:EmailAttributes? = nil) -> Void {
         loadingView.hidden = false
         ConnectionManager.deleteEmail(ConnectionManager.emailAttributesArray[indexPathRow].id, completion: { (isSuccess) in
             if self.tableView.indexPathsForSelectedRows?.count>1
