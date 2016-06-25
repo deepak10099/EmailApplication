@@ -29,6 +29,10 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                     self.tableView.deselectRowAtIndexPath(indexPathOfSelectedCells, animated: false)
                     self.tableView.cellForRowAtIndexPath(indexPathOfSelectedCells)?.backgroundColor = UIColor.clearColor()
                     self.longPressOnCell = false
+                    UIView.animateWithDuration(0.5, animations: {
+                        self.animatableHeader.frame.origin.y = 0 - self.animatableHeader.frame.height - 20
+                        print(self.animatableHeader.frame.origin.y)
+                    })
                 }
             }
         }

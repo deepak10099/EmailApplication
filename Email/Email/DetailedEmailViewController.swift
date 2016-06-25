@@ -119,7 +119,7 @@ class DetailedEmailViewController: UIViewController, UITableViewDelegate,UITable
                 let defaults = NSUserDefaults.standardUserDefaults()
                 if defaults.boolForKey("isStarredForId\(self.currentEmailId!)") {
                     cell.starOrOptionImage.setBackgroundImage(UIImage(named: "unstarred.png"), forState: UIControlState.Normal)
-                    self.delegate.emailAttributesArray[self.currentEmailId! - 1].isStarred = false
+                    ConnectionManager.emailAttributesArray[self.currentEmailId! - 1].isStarred = false
                     self.tableView.setNeedsLayout()
                     self.tableView.layoutSubviews()
                     cell.setNeedsLayout()
@@ -128,7 +128,7 @@ class DetailedEmailViewController: UIViewController, UITableViewDelegate,UITable
                 else
                 {
                     cell.starOrOptionImage.setBackgroundImage(UIImage(named: "starred.png"), forState: UIControlState.Normal)
-                    self.delegate.emailAttributesArray[self.currentEmailId! - 1].isStarred = true
+                    ConnectionManager.emailAttributesArray[self.currentEmailId! - 1].isStarred = true
                     self.tableView.setNeedsLayout()
                     self.tableView.layoutSubviews()
                     cell.setNeedsLayout()
