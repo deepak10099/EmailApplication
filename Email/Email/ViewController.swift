@@ -24,25 +24,23 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         customView = NSBundle.mainBundle().loadNibNamed("ActionBarView", owner: self, options: nil)[0] as? ActionBarView
         animatableHeader.addSubview(customView!)
         customView!.closeButtonTappedClosure = { ()->() in
-            if let selectedCellsArray = self.tableView.indexPathsForSelectedRows
-            {
-                for indexPathOfSelectedCells in selectedCellsArray {
-                    self.tableView.deselectRowAtIndexPath(indexPathOfSelectedCells, animated: false)
-                    self.tableView.cellForRowAtIndexPath(indexPathOfSelectedCells)?.backgroundColor = UIColor.clearColor()
-                    self.longPressOnCell = false
-                    UIView.animateWithDuration(0.5, animations: {
-                        self.animatableHeader.frame.origin.y = 0 - self.animatableHeader.frame.height - 20
-                        print(self.animatableHeader.frame.origin.y)
-                    })
-                }
-            }
+            self.deselectAllCells()
         }
+
         customView!.readUnreadButtonTappedClosure = { ()->() in
             for indexPathForSelectedCell in self.tableView.indexPathsForSelectedRows! {
-                if (ConnectionManager.emailAttributesArray[indexPathForSelectedCell.row] as EmailAttributes).isRead == false {
+                if self.customView?.readUnreadButton.tag == 1 {
+                    (ConnectionManager.emailAttributesArray[indexPathForSelectedCell.row] as EmailAttributes).isRead = true
+                }
+                else
+                {
+                    (ConnectionManager.emailAttributesArray[indexPathForSelectedCell.row] as EmailAttributes).isRead = false
                 }
             }
+            self.handleRefresh()
+            self.deselectAllCells()
         }
+
         customView!.deleteButtonTappedClosure = { ()->() in
             if let selectedCellsArray = self.tableView.indexPathsForSelectedRows
             {
@@ -50,6 +48,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                     self.deleteEmailWithIndexPathRow(indexPathOfSelectedCells.row)
                 }
             }
+            self.deselectAllCells()
         }
         tableView.allowsMultipleSelection = true
         emptyImageView.hidden = true
@@ -57,6 +56,22 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         tableView.registerNib(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier:"TableViewCell")
         tableView.separatorStyle = .None
         handleRefresh()
+    }
+
+    func deselectAllCells()
+    {
+        if let selectedCellsArray = self.tableView.indexPathsForSelectedRows
+        {
+            for indexPathOfSelectedCells in selectedCellsArray {
+                self.tableView.deselectRowAtIndexPath(indexPathOfSelectedCells, animated: false)
+                self.tableView.cellForRowAtIndexPath(indexPathOfSelectedCells)?.backgroundColor = UIColor.clearColor()
+                self.longPressOnCell = false
+                UIView.animateWithDuration(0.5, animations: {
+                    self.animatableHeader.frame.origin.y = 0 - self.animatableHeader.frame.height - 20
+                    print(self.animatableHeader.frame.origin.y)
+                })
+            }
+        }
     }
 
     func handleRefresh(refreshControl: UIRefreshControl? = nil) {
@@ -223,7 +238,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
         print("deselect")
         updateReadUnreadEmailImageAndTag()
-        customView?.readUnreadButton.tag = 1
         if ((tableView.indexPathsForSelectedRows?.count) == nil) {
             self.longPressOnCell = false
             UIView.animateWithDuration(0.5, animations: {
@@ -265,20 +279,20 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     func updateReadUnreadEmailImageAndTag() {
         if let selectedIndexPathArray = tableView.indexPathsForSelectedRows
         {
-        for selectedCellIndexPath in selectedIndexPathArray {
-            if !defaults.boolForKey("isReadForId\(ConnectionManager.emailAttributesArray[selectedCellIndexPath.row].id)")
-            {
-                customView?.readUnreadButton.setBackgroundImage(UIImage(named:"read.png"), forState: .Normal)
-                customView?.readUnreadButton.tag = 1
-                self.view.setNeedsLayout()
-                self.view.layoutSubviews()
-                return
+            for selectedCellIndexPath in selectedIndexPathArray {
+                if !defaults.boolForKey("isReadForId\(ConnectionManager.emailAttributesArray[selectedCellIndexPath.row].id)")
+                {
+                    customView?.readUnreadButton.setBackgroundImage(UIImage(named:"read.png"), forState: .Normal)
+                    customView?.readUnreadButton.tag = 1
+                    self.view.setNeedsLayout()
+                    self.view.layoutSubviews()
+                    return
+                }
             }
-        }
-        customView?.readUnreadButton.setBackgroundImage(UIImage(named:"unread.png"), forState: .Normal)
-        customView?.readUnreadButton.tag = 1
-        self.view.setNeedsLayout()
-        self.view.layoutSubviews()
+            customView?.readUnreadButton.setBackgroundImage(UIImage(named:"unread.png"), forState: .Normal)
+            customView?.readUnreadButton.tag = 2
+            self.view.setNeedsLayout()
+            self.view.layoutSubviews()
         }
     }
     override func didReceiveMemoryWarning() {
