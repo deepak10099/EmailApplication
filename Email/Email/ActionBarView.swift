@@ -3,6 +3,7 @@ import UIKit
 
 class ActionBarView: UIView {
 
+    @IBOutlet weak var readUnreadButton: UIButton!
     var deleteButtonTappedClosure: (()->Void)?
     var closeButtonTappedClosure: (()->Void)?
     var readUnreadButtonTappedClosure: (()->Void)?

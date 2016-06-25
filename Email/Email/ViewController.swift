@@ -7,9 +7,10 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     @IBOutlet weak var animatableHeader: UIView!
     @IBOutlet weak var emptyImageView: UIImageView!
     @IBOutlet weak var unreadEmailCountLabel: UILabel!
-    @IBOutlet weak var loadingView: UIView!
+    @IBOutlet weak var loadingView: ActionBarView!
     @IBOutlet weak var tableView: UITableView!
     let defaults = NSUserDefaults.standardUserDefaults()
+    var customView:ActionBarView? = nil
     var emailUnreadCount = 0
     var longPressOnCell = false
     lazy var refreshControl: UIRefreshControl = {
@@ -20,9 +21,9 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let customView = NSBundle.mainBundle().loadNibNamed("ActionBarView", owner: self, options: nil)[0] as! ActionBarView
-        animatableHeader.addSubview(customView)
-        customView.closeButtonTappedClosure = { ()->() in
+        customView = NSBundle.mainBundle().loadNibNamed("ActionBarView", owner: self, options: nil)[0] as! ActionBarView
+        animatableHeader.addSubview(customView!)
+        customView!.closeButtonTappedClosure = { ()->() in
             if let selectedCellsArray = self.tableView.indexPathsForSelectedRows
             {
                 for indexPathOfSelectedCells in selectedCellsArray {
@@ -36,10 +37,13 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                 }
             }
         }
-        customView.readUnreadButtonTappedClosure = { ()->() in
-
+        customView!.readUnreadButtonTappedClosure = { ()->() in
+            for indexPathForSelectedCell in self.tableView.indexPathsForSelectedRows! {
+                if (ConnectionManager.emailAttributesArray[indexPathForSelectedCell.row] as EmailAttributes).isRead == false {
+                }
+            }
         }
-        customView.deleteButtonTappedClosure = { ()->() in
+        customView!.deleteButtonTappedClosure = { ()->() in
             if let selectedCellsArray = self.tableView.indexPathsForSelectedRows
             {
                 for indexPathOfSelectedCells in selectedCellsArray {
@@ -198,6 +202,10 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if longPressOnCell{
+            if (ConnectionManager.emailAttributesArray[indexPath.row] as EmailAttributes).isRead {
+                customView!.readUnreadButton.setBackgroundImage(UIImage(named: "read.png"), forState: .Normal)
+            }
+
             let cell = tableView.cellForRowAtIndexPath(indexPath)
             cell?.setSelected(true, animated: true)
             tableView.cellForRowAtIndexPath(indexPath)?.backgroundColor = UIColor.lightGrayColor()
@@ -218,7 +226,14 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
 
     func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
         print("deselect")
-        tableView.cellForRowAtIndexPath(indexPath)?.backgroundColor = UIColor.clearColor()
+        if ((tableView.indexPathsForSelectedRows?.count) == nil) {
+            self.longPressOnCell = false
+            UIView.animateWithDuration(0.5, animations: {
+                self.animatableHeader.frame.origin.y = 0 - self.animatableHeader.frame.height - 20
+                print(self.animatableHeader.frame.origin.y)
+            })
+        }
+        self.tableView.cellForRowAtIndexPath(indexPath)?.backgroundColor = UIColor.clearColor()
         print("Selected cells: \(tableView.indexPathsForSelectedRows?.count)")
     }
     func handleLongPressGesture(gestureRecognizer:UILongPressGestureRecognizer)  {
@@ -241,7 +256,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                         }, completion: { finished in
 
                     })
-                    tableView.selectRowAtIndexPath(indexPathOfTappedCell, animated: true, scrollPosition: UITableViewScrollPosition.None)
+                    tableView.selectRowAtIndexPath(indexPathOfTappedCell, animated: true, scrollPosition: .None)
                     tableView.cellForRowAtIndexPath(indexPathOfTappedCell!)?.backgroundColor = UIColor.lightGrayColor()
                     updateSelectedCellCount()
                 }
