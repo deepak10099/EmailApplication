@@ -11,10 +11,10 @@
 		004B2F061D1D1497007BD610 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 004B2EF81D1D1482007BD610 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		004B2F0A1D1D1A97007BD610 /* ActionBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 004B2F091D1D1A97007BD610 /* ActionBarView.xib */; };
 		004B2F0C1D1D1AC7007BD610 /* ActionBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004B2F0B1D1D1AC7007BD610 /* ActionBarView.swift */; };
-		004B2F0F1D1D6D25007BD610 /* read.png in Resources */ = {isa = PBXBuildFile; fileRef = 004B2F0D1D1D6D25007BD610 /* read.png */; };
 		004B2F101D1D6D25007BD610 /* unread.png in Resources */ = {isa = PBXBuildFile; fileRef = 004B2F0E1D1D6D25007BD610 /* unread.png */; };
 		004B2F121D1D6E07007BD610 /* trash.png in Resources */ = {isa = PBXBuildFile; fileRef = 004B2F111D1D6E07007BD610 /* trash.png */; };
 		004B2F141D1D6F10007BD610 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = 004B2F131D1D6F10007BD610 /* close.png */; };
+		00B1BF2F1D1E95E40072229E /* read.png in Resources */ = {isa = PBXBuildFile; fileRef = 00B1BF2E1D1E95E40072229E /* read.png */; };
 		5B3931AB1D1A5CEA0054045A /* DetailedEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3931AA1D1A5CEA0054045A /* DetailedEmailViewController.swift */; };
 		5B769D411D1A68E4006B0908 /* DetailedEmailCells.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B769D401D1A68E4006B0908 /* DetailedEmailCells.xib */; };
 		5B769D491D1A6BC5006B0908 /* DetailedEmailCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B769D481D1A6BC5006B0908 /* DetailedEmailCells.swift */; };
@@ -126,10 +126,10 @@
 		004B2EED1D1D1482007BD610 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "Alamofire-master/Alamofire.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		004B2F091D1D1A97007BD610 /* ActionBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActionBarView.xib; sourceTree = "<group>"; };
 		004B2F0B1D1D1AC7007BD610 /* ActionBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionBarView.swift; sourceTree = "<group>"; };
-		004B2F0D1D1D6D25007BD610 /* read.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = read.png; sourceTree = "<group>"; };
 		004B2F0E1D1D6D25007BD610 /* unread.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unread.png; sourceTree = "<group>"; };
 		004B2F111D1D6E07007BD610 /* trash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trash.png; sourceTree = "<group>"; };
 		004B2F131D1D6F10007BD610 /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
+		00B1BF2E1D1E95E40072229E /* read.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = read.png; sourceTree = "<group>"; };
 		5B3931AA1D1A5CEA0054045A /* DetailedEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailedEmailViewController.swift; sourceTree = "<group>"; };
 		5B769D401D1A68E4006B0908 /* DetailedEmailCells.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailedEmailCells.xib; sourceTree = "<group>"; };
 		5B769D481D1A6BC5006B0908 /* DetailedEmailCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailedEmailCells.swift; sourceTree = "<group>"; };
@@ -316,8 +316,8 @@
 			children = (
 				004B2F131D1D6F10007BD610 /* close.png */,
 				004B2F111D1D6E07007BD610 /* trash.png */,
-				004B2F0D1D1D6D25007BD610 /* read.png */,
 				004B2F0E1D1D6D25007BD610 /* unread.png */,
+				00B1BF2E1D1E95E40072229E /* read.png */,
 				5BB79BB41D1C104000F4C62A /* empty.png */,
 				5BCE70B31D1945AE00224D43 /* starred.png */,
 				5BCE70B41D1945AE00224D43 /* unstarred.png */,
@@ -491,7 +491,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BCE70B61D1945AE00224D43 /* unstarred.png in Resources */,
-				004B2F0F1D1D6D25007BD610 /* read.png in Resources */,
 				004B2F121D1D6E07007BD610 /* trash.png in Resources */,
 				5BCE70811D19083C00224D43 /* LaunchScreen.storyboard in Resources */,
 				5BCE70B51D1945AE00224D43 /* starred.png in Resources */,
@@ -501,6 +500,7 @@
 				5BCE707E1D19083C00224D43 /* Assets.xcassets in Resources */,
 				004B2F0A1D1D1A97007BD610 /* ActionBarView.xib in Resources */,
 				5B769D411D1A68E4006B0908 /* DetailedEmailCells.xib in Resources */,
+				00B1BF2F1D1E95E40072229E /* read.png in Resources */,
 				5BCE70AD1D190C7200224D43 /* CustomTableViewCell.xib in Resources */,
 				5BCE707C1D19083C00224D43 /* Main.storyboard in Resources */,
 			);

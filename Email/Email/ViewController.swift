@@ -21,7 +21,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        customView = NSBundle.mainBundle().loadNibNamed("ActionBarView", owner: self, options: nil)[0] as! ActionBarView
+        customView = NSBundle.mainBundle().loadNibNamed("ActionBarView", owner: self, options: nil)[0] as? ActionBarView
         animatableHeader.addSubview(customView!)
         customView!.closeButtonTappedClosure = { ()->() in
             if let selectedCellsArray = self.tableView.indexPathsForSelectedRows
@@ -196,10 +196,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         }
     }
 
-    func updateSelectedCellCount(){
-        print("Selected cells: \(tableView.indexPathsForSelectedRows?.count)")
-    }
-
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if longPressOnCell{
             if (ConnectionManager.emailAttributesArray[indexPath.row] as EmailAttributes).isRead {
@@ -208,9 +204,9 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
 
             let cell = tableView.cellForRowAtIndexPath(indexPath)
             cell?.setSelected(true, animated: true)
+            updateReadUnreadEmailImageAndTag()
             tableView.cellForRowAtIndexPath(indexPath)?.backgroundColor = UIColor.lightGrayColor()
             print("Selected cells: \(tableView.indexPathsForSelectedRows?.count)")
-            updateSelectedCellCount()
             return
         }
         ConnectionManager.emailAttributesArray[indexPath.row].isRead = true
@@ -226,6 +222,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
 
     func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
         print("deselect")
+        updateReadUnreadEmailImageAndTag()
+        customView?.readUnreadButton.tag = 1
         if ((tableView.indexPathsForSelectedRows?.count) == nil) {
             self.longPressOnCell = false
             UIView.animateWithDuration(0.5, animations: {
@@ -258,9 +256,29 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                     })
                     tableView.selectRowAtIndexPath(indexPathOfTappedCell, animated: true, scrollPosition: .None)
                     tableView.cellForRowAtIndexPath(indexPathOfTappedCell!)?.backgroundColor = UIColor.lightGrayColor()
-                    updateSelectedCellCount()
+                    updateReadUnreadEmailImageAndTag()
                 }
             }
+        }
+    }
+
+    func updateReadUnreadEmailImageAndTag() {
+        if let selectedIndexPathArray = tableView.indexPathsForSelectedRows
+        {
+        for selectedCellIndexPath in selectedIndexPathArray {
+            if !defaults.boolForKey("isReadForId\(ConnectionManager.emailAttributesArray[selectedCellIndexPath.row].id)")
+            {
+                customView?.readUnreadButton.setBackgroundImage(UIImage(named:"read.png"), forState: .Normal)
+                customView?.readUnreadButton.tag = 1
+                self.view.setNeedsLayout()
+                self.view.layoutSubviews()
+                return
+            }
+        }
+        customView?.readUnreadButton.setBackgroundImage(UIImage(named:"unread.png"), forState: .Normal)
+        customView?.readUnreadButton.tag = 1
+        self.view.setNeedsLayout()
+        self.view.layoutSubviews()
         }
     }
     override func didReceiveMemoryWarning() {
