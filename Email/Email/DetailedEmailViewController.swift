@@ -28,7 +28,12 @@ class DetailedEmailViewController: UIViewController, UITableViewDelegate,UITable
         let customPopupView = NSBundle.mainBundle().loadNibNamed("EmailInfoPopup", owner: self, options: nil)[0] as! EmailInfoPopup
         popup.addSubview(customPopupView)
         popup.hidden = true
-
+        ConnectionManager.fetchEmailBody((self.currentEmailAttributeObject?.id)!, completion: { (emailBody, emailsArray) in
+            for email in emailsArray {
+               customPopupView.fromParticipant.text = NSString(format: "%@ %@ \n", (customPopupView.fromParticipant as UITextView).text,(email as! NSDictionary)["email"] as! NSString) as String
+            }
+        })
+        customPopupView.subject.text = currentEmailAttributeObject?.subject
         self.view.setNeedsLayout()
         self.view.layoutSubviews()
 
