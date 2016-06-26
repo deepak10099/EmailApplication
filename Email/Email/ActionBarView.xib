@@ -11,6 +11,13 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="62"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5dh-RT-cOO" userLabel="TopSeparator">
+                    <rect key="frame" x="0.0" y="5" width="320" height="3"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="3" id="WOT-OK-jMj"/>
+                    </constraints>
+                </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aBy-vC-pZS" userLabel="close">
                     <rect key="frame" x="30" y="16" width="30" height="30"/>
                     <constraints>
@@ -46,15 +53,28 @@
                         <action selector="readUnreadButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="DHo-CA-9s1"/>
                     </connections>
                 </button>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="knD-Vz-8xu" userLabel="BottomSeparator">
+                    <rect key="frame" x="0.0" y="52" width="320" height="3"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="3" id="TX2-kz-Efz"/>
+                    </constraints>
+                </view>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="AJF-aU-qm2" secondAttribute="trailing" constant="30" id="3fP-f9-f8w"/>
+                <constraint firstItem="knD-Vz-8xu" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="9kX-KD-BTL"/>
+                <constraint firstItem="5dh-RT-cOO" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Dbx-yZ-67r"/>
                 <constraint firstItem="aBy-vC-pZS" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="IU0-jz-GFg"/>
                 <constraint firstItem="aBy-vC-pZS" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="PRp-gK-I6V"/>
+                <constraint firstAttribute="bottom" secondItem="knD-Vz-8xu" secondAttribute="bottom" constant="7" id="X5K-Pc-rim"/>
                 <constraint firstItem="c5P-iL-eth" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="d5h-iL-xzQ"/>
+                <constraint firstItem="knD-Vz-8xu" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="oHq-5q-Jn3"/>
+                <constraint firstItem="5dh-RT-cOO" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="pmh-hR-gaX"/>
                 <constraint firstItem="AJF-aU-qm2" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="sn1-ba-aKj"/>
                 <constraint firstItem="c5P-iL-eth" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="vlO-32-Teq"/>
+                <constraint firstItem="5dh-RT-cOO" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="y40-ba-2ob"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

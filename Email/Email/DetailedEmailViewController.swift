@@ -3,7 +3,7 @@ import Foundation
 import UIKit
 
 class DetailedEmailViewController: UIViewController, UITableViewDelegate,UITableViewDataSource {
-    
+
     @IBOutlet weak var headerSubview: UIView!
     @IBOutlet weak var tableView: UITableView!
     let boldFont = UIFont.boldSystemFontOfSize(16.0)
@@ -17,7 +17,7 @@ class DetailedEmailViewController: UIViewController, UITableViewDelegate,UITable
         refreshControl.addTarget(self, action: #selector(handleRefresh), forControlEvents: UIControlEvents.ValueChanged)
         return refreshControl
     }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         currentEmailAttributeObject = ConnectionManager.fetchEmailAttributeForIndex(currentEmailId!)
@@ -49,14 +49,14 @@ class DetailedEmailViewController: UIViewController, UITableViewDelegate,UITable
         tableView.dataSource = self
         tableView.separatorStyle = .None
     }
-    
+
     override func viewWillAppear(animated: Bool) {
         ConnectionManager.fetchEmailBody(currentEmailId!, completion:{(emailBody:String,participants:NSArray) in
             self.emailBody = emailBody
             self.tableView.reloadData()
         })
     }
-    
+
     func handleRefresh(refreshControl: UIRefreshControl) {
         ConnectionManager.fetchEmailBody(currentEmailId!, completion:{(emailBody:String,participants:NSArray) in
             self.emailBody = emailBody
@@ -64,24 +64,23 @@ class DetailedEmailViewController: UIViewController, UITableViewDelegate,UITable
             refreshControl.endRefreshing()
         })
     }
-    
+
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
     }
-    
+
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        
         switch indexPath.row {
         case 0:
             let str:NSString = (currentEmailAttributeObject?.subject)!
             let str2:NSString = (currentEmailAttributeObject?.participants.joinWithSeparator(","))!
             let firstLinesize =  heightNeededForText(str, withFont: UIFont.systemFontOfSize(20.0), width:  tableView.frame.size.width, lineBreakMode: NSLineBreakMode.ByWordWrapping)
             let secondLineSize =  heightNeededForText(str2, withFont: UIFont.systemFontOfSize(20.0), width:  tableView.frame.size.width, lineBreakMode: NSLineBreakMode.ByWordWrapping)
-            return firstLinesize + secondLineSize + 20;
-            
+            return firstLinesize + secondLineSize + 30;
+
         case 1:
             return 55
-            
+
         case 2:
             if emailBody != nil {
                 let str:NSString = emailBody!
@@ -92,14 +91,14 @@ class DetailedEmailViewController: UIViewController, UITableViewDelegate,UITable
             {
                 return 0
             }
-            
+
         default:
             return 0
         }
     }
-    
+
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
+
         let cell =  tableView.dequeueReusableCellWithIdentifier("DetailedTableViewCellOne", forIndexPath: indexPath) as! DetailedEmailCells
         cell.contentView.userInteractionEnabled = false
         switch indexPath.row
@@ -115,58 +114,55 @@ class DetailedEmailViewController: UIViewController, UITableViewDelegate,UITable
             if  defaults.boolForKey("isStarredForId\(currentEmailId!)")
             {
                 cell.starOrOptionImage.setBackgroundImage(UIImage(named: "starred.png"), forState: UIControlState.Normal)
-                
             }
             else{
                 cell.starOrOptionImage.setBackgroundImage(UIImage(named: "unstarred.png"), forState: UIControlState.Normal)
             }
-            
+
             cell.starOrOptionTappedClosure = {() in
                 let defaults = NSUserDefaults.standardUserDefaults()
-                if defaults.boolForKey("isStarredForId\(self.currentEmailId!)") {
+                if defaults.boolForKey("isStarredForId\(self.currentEmailId!)")
+                {
                     cell.starOrOptionImage.setBackgroundImage(UIImage(named: "unstarred.png"), forState: UIControlState.Normal)
                     self.currentEmailAttributeObject!.isStarred = false
-                    self.tableView.setNeedsLayout()
-                    self.tableView.layoutSubviews()
-                    cell.setNeedsLayout()
-                    cell.layoutSubviews()
                 }
                 else
                 {
                     cell.starOrOptionImage.setBackgroundImage(UIImage(named: "starred.png"), forState: UIControlState.Normal)
                     self.currentEmailAttributeObject!.isStarred = true
-                    self.tableView.setNeedsLayout()
-                    self.tableView.layoutSubviews()
-                    cell.setNeedsLayout()
-                    cell.layoutSubviews()            }
+                }
+                self.tableView.setNeedsLayout()
+                self.tableView.layoutSubviews()
+                cell.setNeedsLayout()
+                cell.layoutSubviews()
             }
-            
-            
+
+
         case 1:
             cell.starOrOptionImage.removeFromSuperview()
             cell.lineTwo.removeFromSuperview()
             cell.lineOne.font = normalFont
             cell.lineOne.text = currentEmailAttributeObject?.participants[0]
             cell.firstLetterImage.titleLabel?.text = Array(arrayLiteral: cell.lineOne.text! as String)[0]
-            
-            
+
+
         case 2:
             cell.firstLetterImage.removeFromSuperview()
             cell.lineOne.text = emailBody
             cell.lineOne.font = normalFont
             cell.starOrOptionImage.removeFromSuperview()
             cell.lineTwo.removeFromSuperview()
-            
-            
+
+
         default: print("")
         }
         return cell;
     }
-    
+
     func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
         return nil
     }
-    
+
     func heightNeededForText(text: NSString, withFont font: UIFont, width: CGFloat, lineBreakMode:NSLineBreakMode) -> CGFloat {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineBreakMode = lineBreakMode
