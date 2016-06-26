@@ -187,4 +187,8 @@ class DetailedEmailViewController: UIViewController, UITableViewDelegate,UITable
         let size: CGSize = text.boundingRectWithSize(CGSizeMake(width, CGFloat.max), options: [.UsesLineFragmentOrigin, .UsesFontLeading], attributes: [ NSFontAttributeName: font, NSParagraphStyleAttributeName: paragraphStyle], context: nil).size
         return ceil(size.height);
     }
+
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.All
+    }
 }
