@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		003D19631D20046F004648D5 /* CALayer+DTI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003D19551D20046F004648D5 /* CALayer+DTI.swift */; };
+		003D19641D20046F004648D5 /* DTIActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003D19571D20046F004648D5 /* DTIActivityIndicatorView.swift */; };
+		003D19651D20046F004648D5 /* DTIAnimChasingDots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003D19581D20046F004648D5 /* DTIAnimChasingDots.swift */; };
+		003D19661D20046F004648D5 /* DTIAnimDoubleBounce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003D19591D20046F004648D5 /* DTIAnimDoubleBounce.swift */; };
+		003D19671D20046F004648D5 /* DTIAnimProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003D195A1D20046F004648D5 /* DTIAnimProtocol.swift */; };
+		003D19681D20046F004648D5 /* DTIAnimPulse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003D195B1D20046F004648D5 /* DTIAnimPulse.swift */; };
+		003D19691D20046F004648D5 /* DTIAnimRotatingPlane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003D195C1D20046F004648D5 /* DTIAnimRotatingPlane.swift */; };
+		003D196A1D20046F004648D5 /* DTIAnimSpotify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003D195D1D20046F004648D5 /* DTIAnimSpotify.swift */; };
+		003D196B1D20046F004648D5 /* DTIAnimWanderingCubes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003D195E1D20046F004648D5 /* DTIAnimWanderingCubes.swift */; };
+		003D196C1D20046F004648D5 /* DTIAnimWave.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003D195F1D20046F004648D5 /* DTIAnimWave.swift */; };
+		003D196D1D20046F004648D5 /* DTIAnimWp8.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003D19601D20046F004648D5 /* DTIAnimWp8.swift */; };
+		003D196E1D20046F004648D5 /* DTIIndicatorStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003D19611D20046F004648D5 /* DTIIndicatorStyle.swift */; };
+		003D196F1D20046F004648D5 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 003D19621D20046F004648D5 /* Info.plist */; };
 		004B2F051D1D1497007BD610 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 004B2EF81D1D1482007BD610 /* Alamofire.framework */; };
 		004B2F061D1D1497007BD610 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 004B2EF81D1D1482007BD610 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		004B2F0A1D1D1A97007BD610 /* ActionBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 004B2F091D1D1A97007BD610 /* ActionBarView.xib */; };
@@ -125,6 +138,20 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		003D19551D20046F004648D5 /* CALayer+DTI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CALayer+DTI.swift"; sourceTree = "<group>"; };
+		003D19561D20046F004648D5 /* DTIActivityIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTIActivityIndicator.h; sourceTree = "<group>"; };
+		003D19571D20046F004648D5 /* DTIActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DTIActivityIndicatorView.swift; sourceTree = "<group>"; };
+		003D19581D20046F004648D5 /* DTIAnimChasingDots.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DTIAnimChasingDots.swift; sourceTree = "<group>"; };
+		003D19591D20046F004648D5 /* DTIAnimDoubleBounce.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DTIAnimDoubleBounce.swift; sourceTree = "<group>"; };
+		003D195A1D20046F004648D5 /* DTIAnimProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DTIAnimProtocol.swift; sourceTree = "<group>"; };
+		003D195B1D20046F004648D5 /* DTIAnimPulse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DTIAnimPulse.swift; sourceTree = "<group>"; };
+		003D195C1D20046F004648D5 /* DTIAnimRotatingPlane.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DTIAnimRotatingPlane.swift; sourceTree = "<group>"; };
+		003D195D1D20046F004648D5 /* DTIAnimSpotify.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DTIAnimSpotify.swift; sourceTree = "<group>"; };
+		003D195E1D20046F004648D5 /* DTIAnimWanderingCubes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DTIAnimWanderingCubes.swift; sourceTree = "<group>"; };
+		003D195F1D20046F004648D5 /* DTIAnimWave.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DTIAnimWave.swift; sourceTree = "<group>"; };
+		003D19601D20046F004648D5 /* DTIAnimWp8.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DTIAnimWp8.swift; sourceTree = "<group>"; };
+		003D19611D20046F004648D5 /* DTIIndicatorStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DTIIndicatorStyle.swift; sourceTree = "<group>"; };
+		003D19621D20046F004648D5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		004B2EED1D1D1482007BD610 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "Alamofire-master/Alamofire.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		004B2F091D1D1A97007BD610 /* ActionBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActionBarView.xib; sourceTree = "<group>"; };
 		004B2F0B1D1D1AC7007BD610 /* ActionBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionBarView.swift; sourceTree = "<group>"; };
@@ -188,6 +215,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		003D19541D20046F004648D5 /* DTIIndicator */ = {
+			isa = PBXGroup;
+			children = (
+				003D19551D20046F004648D5 /* CALayer+DTI.swift */,
+				003D19561D20046F004648D5 /* DTIActivityIndicator.h */,
+				003D19571D20046F004648D5 /* DTIActivityIndicatorView.swift */,
+				003D19581D20046F004648D5 /* DTIAnimChasingDots.swift */,
+				003D19591D20046F004648D5 /* DTIAnimDoubleBounce.swift */,
+				003D195A1D20046F004648D5 /* DTIAnimProtocol.swift */,
+				003D195B1D20046F004648D5 /* DTIAnimPulse.swift */,
+				003D195C1D20046F004648D5 /* DTIAnimRotatingPlane.swift */,
+				003D195D1D20046F004648D5 /* DTIAnimSpotify.swift */,
+				003D195E1D20046F004648D5 /* DTIAnimWanderingCubes.swift */,
+				003D195F1D20046F004648D5 /* DTIAnimWave.swift */,
+				003D19601D20046F004648D5 /* DTIAnimWp8.swift */,
+				003D19611D20046F004648D5 /* DTIIndicatorStyle.swift */,
+				003D19621D20046F004648D5 /* Info.plist */,
+			);
+			name = DTIIndicator;
+			path = Source;
+			sourceTree = "<group>";
+		};
+		003D19701D200571004648D5 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				5BB79BA51D1BB5F400F4C62A /* Reachability.h */,
+				5BB79BA61D1BB5F400F4C62A /* Reachability.m */,
+			);
+			name = Reachability;
+			sourceTree = "<group>";
+		};
 		004B2EEE1D1D1482007BD610 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -238,8 +296,8 @@
 		5BB79BA81D1BB64100F4C62A /* Third Party */ = {
 			isa = PBXGroup;
 			children = (
-				5BB79BA51D1BB5F400F4C62A /* Reachability.h */,
-				5BB79BA61D1BB5F400F4C62A /* Reachability.m */,
+				003D19701D200571004648D5 /* Reachability */,
+				003D19541D20046F004648D5 /* DTIIndicator */,
 			);
 			name = "Third Party";
 			sourceTree = "<group>";
@@ -504,6 +562,7 @@
 				004B2F101D1D6D25007BD610 /* unread.png in Resources */,
 				5BB79BB51D1C104000F4C62A /* empty.png in Resources */,
 				004B2F141D1D6F10007BD610 /* close.png in Resources */,
+				003D196F1D20046F004648D5 /* Info.plist in Resources */,
 				5BCE707E1D19083C00224D43 /* Assets.xcassets in Resources */,
 				004B2F0A1D1D1A97007BD610 /* ActionBarView.xib in Resources */,
 				5B769D411D1A68E4006B0908 /* DetailedEmailCells.xib in Resources */,
@@ -535,15 +594,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BCE70AB1D190C0400224D43 /* CustomTableViewCell.swift in Sources */,
+				003D19671D20046F004648D5 /* DTIAnimProtocol.swift in Sources */,
 				004B2F0C1D1D1AC7007BD610 /* ActionBarView.swift in Sources */,
+				003D196E1D20046F004648D5 /* DTIIndicatorStyle.swift in Sources */,
 				5B3931AB1D1A5CEA0054045A /* DetailedEmailViewController.swift in Sources */,
+				003D19641D20046F004648D5 /* DTIActivityIndicatorView.swift in Sources */,
+				003D196C1D20046F004648D5 /* DTIAnimWave.swift in Sources */,
 				5BB79BA71D1BB5F400F4C62A /* Reachability.m in Sources */,
 				5B769D491D1A6BC5006B0908 /* DetailedEmailCells.swift in Sources */,
+				003D19651D20046F004648D5 /* DTIAnimChasingDots.swift in Sources */,
+				003D19661D20046F004648D5 /* DTIAnimDoubleBounce.swift in Sources */,
 				5BCE71AC1D1958C500224D43 /* EmailAttributes.swift in Sources */,
 				5BCE71AA1D1948FF00224D43 /* ConnectionManager.swift in Sources */,
+				003D196B1D20046F004648D5 /* DTIAnimWanderingCubes.swift in Sources */,
 				00BA81331D1FC7BC00067D7A /* EmailInfoPopup.swift in Sources */,
+				003D19681D20046F004648D5 /* DTIAnimPulse.swift in Sources */,
+				003D196D1D20046F004648D5 /* DTIAnimWp8.swift in Sources */,
+				003D196A1D20046F004648D5 /* DTIAnimSpotify.swift in Sources */,
 				5BCE70791D19083C00224D43 /* ViewController.swift in Sources */,
+				003D19631D20046F004648D5 /* CALayer+DTI.swift in Sources */,
 				5BCE70771D19083C00224D43 /* AppDelegate.swift in Sources */,
+				003D19691D20046F004648D5 /* DTIAnimRotatingPlane.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
