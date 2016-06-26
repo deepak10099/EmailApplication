@@ -1,12 +1,55 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="kA1-wM-YLz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="E89-Ot-B0C">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="CaviarDreams.ttf">
+            <string>CaviarDreams</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
+        <!--Launch Screen View Controller-->
+        <scene sceneID="pij-7R-t6L">
+            <objects>
+                <viewController id="E89-Ot-B0C" customClass="LaunchScreenViewController" customModule="Email" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Hof-D8-fgT"/>
+                        <viewControllerLayoutGuide type="bottom" id="ff8-uj-sQc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6QT-Ow-ikA">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cloud Magic" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q2m-0T-5Ui">
+                                <rect key="frame" x="63" y="216" width="193" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="193" id="XqW-0c-AW6"/>
+                                    <constraint firstAttribute="height" constant="48" id="uSP-Dg-nc1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="CaviarDreams" family="Caviar Dreams" pointSize="29"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="q2m-0T-5Ui" firstAttribute="centerY" secondItem="6QT-Ow-ikA" secondAttribute="centerY" id="LPZ-f1-VpJ"/>
+                            <constraint firstItem="q2m-0T-5Ui" firstAttribute="centerX" secondItem="6QT-Ow-ikA" secondAttribute="centerX" id="tpv-c6-top"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <segue destination="kA1-wM-YLz" kind="show" identifier="splashScreenSegue" id="JYy-1p-fhy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3SO-re-Upk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-117" y="76"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="h5R-xW-cjU">
             <objects>

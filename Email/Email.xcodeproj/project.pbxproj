@@ -20,6 +20,9 @@
 		003D196D1D20046F004648D5 /* DTIAnimWp8.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003D19601D20046F004648D5 /* DTIAnimWp8.swift */; };
 		003D196E1D20046F004648D5 /* DTIIndicatorStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003D19611D20046F004648D5 /* DTIIndicatorStyle.swift */; };
 		003D196F1D20046F004648D5 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 003D19621D20046F004648D5 /* Info.plist */; };
+		003D19721D200660004648D5 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 003D19711D200660004648D5 /* LaunchScreen.xib */; };
+		003D19741D20067D004648D5 /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003D19731D20067D004648D5 /* LaunchScreen.swift */; };
+		003D19761D200A6E004648D5 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003D19751D200A6E004648D5 /* LaunchScreenViewController.swift */; };
 		004B2F051D1D1497007BD610 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 004B2EF81D1D1482007BD610 /* Alamofire.framework */; };
 		004B2F061D1D1497007BD610 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 004B2EF81D1D1482007BD610 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		004B2F0A1D1D1A97007BD610 /* ActionBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 004B2F091D1D1A97007BD610 /* ActionBarView.xib */; };
@@ -152,6 +155,9 @@
 		003D19601D20046F004648D5 /* DTIAnimWp8.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DTIAnimWp8.swift; sourceTree = "<group>"; };
 		003D19611D20046F004648D5 /* DTIIndicatorStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DTIIndicatorStyle.swift; sourceTree = "<group>"; };
 		003D19621D20046F004648D5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		003D19711D200660004648D5 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		003D19731D20067D004648D5 /* LaunchScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchScreen.swift; sourceTree = "<group>"; };
+		003D19751D200A6E004648D5 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		004B2EED1D1D1482007BD610 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = "Alamofire-master/Alamofire.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		004B2F091D1D1A97007BD610 /* ActionBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActionBarView.xib; sourceTree = "<group>"; };
 		004B2F0B1D1D1AC7007BD610 /* ActionBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionBarView.swift; sourceTree = "<group>"; };
@@ -279,6 +285,8 @@
 				004B2F091D1D1A97007BD610 /* ActionBarView.xib */,
 				00BA81321D1FC7BC00067D7A /* EmailInfoPopup.swift */,
 				00BA81301D1FC7A100067D7A /* EmailInfoPopup.xib */,
+				003D19731D20067D004648D5 /* LaunchScreen.swift */,
+				003D19711D200660004648D5 /* LaunchScreen.xib */,
 				5BCE707A1D19083C00224D43 /* Main.storyboard */,
 			);
 			name = View;
@@ -289,6 +297,7 @@
 			children = (
 				5BCE70781D19083C00224D43 /* ViewController.swift */,
 				5B3931AA1D1A5CEA0054045A /* DetailedEmailViewController.swift */,
+				003D19751D200A6E004648D5 /* LaunchScreenViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -558,6 +567,7 @@
 				00BA81311D1FC7A100067D7A /* EmailInfoPopup.xib in Resources */,
 				004B2F121D1D6E07007BD610 /* trash.png in Resources */,
 				5BCE70811D19083C00224D43 /* LaunchScreen.storyboard in Resources */,
+				003D19721D200660004648D5 /* LaunchScreen.xib in Resources */,
 				5BCE70B51D1945AE00224D43 /* starred.png in Resources */,
 				004B2F101D1D6D25007BD610 /* unread.png in Resources */,
 				5BB79BB51D1C104000F4C62A /* empty.png in Resources */,
@@ -603,8 +613,10 @@
 				5BB79BA71D1BB5F400F4C62A /* Reachability.m in Sources */,
 				5B769D491D1A6BC5006B0908 /* DetailedEmailCells.swift in Sources */,
 				003D19651D20046F004648D5 /* DTIAnimChasingDots.swift in Sources */,
+				003D19761D200A6E004648D5 /* LaunchScreenViewController.swift in Sources */,
 				003D19661D20046F004648D5 /* DTIAnimDoubleBounce.swift in Sources */,
 				5BCE71AC1D1958C500224D43 /* EmailAttributes.swift in Sources */,
+				003D19741D20067D004648D5 /* LaunchScreen.swift in Sources */,
 				5BCE71AA1D1948FF00224D43 /* ConnectionManager.swift in Sources */,
 				003D196B1D20046F004648D5 /* DTIAnimWanderingCubes.swift in Sources */,
 				00BA81331D1FC7BC00067D7A /* EmailInfoPopup.swift in Sources */,

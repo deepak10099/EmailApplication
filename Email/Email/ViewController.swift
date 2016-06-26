@@ -21,7 +21,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        showActivityIndicator()
         customView = NSBundle.mainBundle().loadNibNamed("ActionBarView", owner: self, options: nil)[0] as? ActionBarView
         animatableHeader.addSubview(customView!)
         customView!.closeButtonTappedClosure = { ()->() in
@@ -292,15 +291,5 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
         return UIInterfaceOrientationMask.All
-    }
-
-
-    func showActivityIndicator()
-    {
-        let myActivityIndicatorView: DTIActivityIndicatorView = DTIActivityIndicatorView(frame: CGRect(x:self.view.center.x - 20, y:self.view.center.y+100, width:40.0, height:40.0))
-        self.view.addSubview(myActivityIndicatorView)
-        myActivityIndicatorView.indicatorColor = UIColor.whiteColor();
-        myActivityIndicatorView.indicatorStyle = DTIIndicatorStyle.convInv(.spotify)
-        myActivityIndicatorView.startActivity()
     }
 }
