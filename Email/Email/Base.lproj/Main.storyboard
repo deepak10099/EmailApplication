@@ -25,12 +25,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cloud Magic" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q2m-0T-5Ui">
-                                <rect key="frame" x="63" y="216" width="193" height="48"/>
+                                <rect key="frame" x="51" y="216" width="218" height="48"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="193" id="XqW-0c-AW6"/>
+                                    <constraint firstAttribute="width" constant="218" id="XqW-0c-AW6"/>
                                     <constraint firstAttribute="height" constant="48" id="uSP-Dg-nc1"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="CaviarDreams" family="Caviar Dreams" pointSize="29"/>
+                                <fontDescription key="fontDescription" name="CaviarDreams" family="Caviar Dreams" pointSize="33"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -102,9 +102,6 @@
                             <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ly-1e-9Ey">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <subviews>
-                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="j2R-wF-gqE">
-                                        <rect key="frame" x="150" y="230" width="20" height="20"/>
-                                    </activityIndicatorView>
                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.75" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fetching mail..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pEB-vH-hMn">
                                         <rect key="frame" x="0.0" y="368" width="320" height="78"/>
                                         <constraints>
@@ -118,10 +115,8 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="pEB-vH-hMn" secondAttribute="bottom" constant="34" id="5aH-16-F6T"/>
-                                    <constraint firstItem="j2R-wF-gqE" firstAttribute="centerX" secondItem="7ly-1e-9Ey" secondAttribute="centerX" id="CEX-MA-kUz"/>
                                     <constraint firstItem="pEB-vH-hMn" firstAttribute="centerX" secondItem="7ly-1e-9Ey" secondAttribute="centerX" id="Lfa-zw-RWo"/>
                                     <constraint firstItem="pEB-vH-hMn" firstAttribute="width" secondItem="7ly-1e-9Ey" secondAttribute="width" id="cuQ-YT-Hd3"/>
-                                    <constraint firstItem="j2R-wF-gqE" firstAttribute="centerY" secondItem="7ly-1e-9Ey" secondAttribute="centerY" id="jCc-Nr-Idc"/>
                                 </constraints>
                             </view>
                         </subviews>

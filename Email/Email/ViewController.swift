@@ -9,6 +9,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     @IBOutlet weak var unreadEmailCountLabel: UILabel!
     @IBOutlet weak var loadingView: ActionBarView!
     @IBOutlet weak var tableView: UITableView!
+    var myActivityIndicatorView:DTIActivityIndicatorView!
     let defaults = NSUserDefaults.standardUserDefaults()
     var customView:ActionBarView? = nil
     var emailUnreadCount = 0
@@ -21,6 +22,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        showActivityIndicator()
         customView = NSBundle.mainBundle().loadNibNamed("ActionBarView", owner: self, options: nil)[0] as? ActionBarView
         animatableHeader.addSubview(customView!)
         customView!.closeButtonTappedClosure = { ()->() in
@@ -79,6 +81,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             ConnectionManager.emailAttributesArray = array as! [EmailAttributes]
             if  ConnectionManager.emailAttributesArray.count == 0{
                 self.loadingView.hidden = true
+                self.hideActivityIndicator()
                 self.emptyImageView.hidden = false
                 self.tableView.hidden = true
                 self.unreadEmailCountLabel.text = "Empty Inbox"
@@ -92,6 +95,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             self.checkAndUpdateMailCount()
             self.tableView.setNeedsLayout()
             self.loadingView.hidden = true
+            self.hideActivityIndicator()
             if refreshControl != nil
             {
                 refreshControl!.endRefreshing()
@@ -178,6 +182,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
 
     func deleteEmailWithIndexPathRow(indexPathRow:Int, emailAttributesId:EmailAttributes? = nil) -> Void {
         loadingView.hidden = false
+        showActivityIndicator()
         ConnectionManager.deleteEmail(ConnectionManager.emailAttributesArray[indexPathRow].id, completion: { (isSuccess) in
             if self.tableView.indexPathsForSelectedRows?.count>1
             {
@@ -291,5 +296,20 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
         return UIInterfaceOrientationMask.All
+    }
+
+    func showActivityIndicator()
+    {
+
+        myActivityIndicatorView = DTIActivityIndicatorView(frame: CGRect(x:self.view!.center.x - 20, y:self.view!.center.y+100, width:40.0, height:40.0))
+        self.view!.addSubview(myActivityIndicatorView)
+        myActivityIndicatorView.indicatorColor = UIColor.blackColor()
+        myActivityIndicatorView.indicatorStyle = DTIIndicatorStyle.convInv(DTIIndicatorStyle.rotatingPane)
+        myActivityIndicatorView.startActivity()
+        myActivityIndicatorView.hidden = false
+    }
+
+    func hideActivityIndicator() {
+        myActivityIndicatorView.hidden = true
     }
 }

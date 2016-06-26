@@ -33,7 +33,7 @@ class LaunchScreenViewController: UIViewController {
         let topView = window?.rootViewController?.view
         let myActivityIndicatorView: DTIActivityIndicatorView = DTIActivityIndicatorView(frame: CGRect(x:topView!.center.x - 40, y:topView!.center.y+100, width:80.0, height:80.0))
         topView!.addSubview(myActivityIndicatorView)
-        myActivityIndicatorView.indicatorColor = UIColor.redColor()
+        myActivityIndicatorView.indicatorColor = UIColor.whiteColor()
         myActivityIndicatorView.indicatorStyle = DTIIndicatorStyle.convInv(DTIIndicatorStyle.chasingDots)
         myActivityIndicatorView.startActivity()
     }
