@@ -7,3 +7,13 @@
 //
 
 import Foundation
+import UIKit
+
+class EmailInfoPopup:UIView {
+    var closeButtonTappedClosure: (()->Void)?
+
+    @IBAction func closeButtonTapped(sender: AnyObject) {
+        closeButtonTappedClosure!()
+    }
+    
+}

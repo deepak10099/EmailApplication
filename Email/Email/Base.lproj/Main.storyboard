@@ -127,10 +127,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G21-Dr-qGr">
-                                <rect key="frame" x="20" y="65" width="280" height="350"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TMC-xu-kB7" userLabel="Header">
                                 <rect key="frame" x="0.0" y="12" width="320" height="62"/>
                                 <subviews>
@@ -150,15 +146,29 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YMS-gd-Knz">
                                 <rect key="frame" x="-4" y="77" width="328" height="403"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="cMD-O3-CvS" id="0AH-AX-xMg"/>
+                                    <outlet property="delegate" destination="cMD-O3-CvS" id="pe1-z9-Z8M"/>
+                                </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G21-Dr-qGr" userLabel="Popup">
+                                <rect key="frame" x="20" y="65" width="280" height="350"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="350" id="1q2-1G-tbC"/>
+                                    <constraint firstAttribute="width" constant="280" id="HbP-Y8-k1e"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="YMS-gd-Knz" firstAttribute="top" secondItem="1iC-Og-wN6" secondAttribute="bottom" constant="57" id="0dh-4G-MFF"/>
                             <constraint firstItem="Yux-g3-LTz" firstAttribute="top" secondItem="YMS-gd-Knz" secondAttribute="bottom" id="0zq-fE-pfP"/>
                             <constraint firstAttribute="trailingMargin" secondItem="YMS-gd-Knz" secondAttribute="trailing" constant="-20" id="8jO-c4-z1p"/>
+                            <constraint firstItem="G21-Dr-qGr" firstAttribute="centerY" secondItem="bPq-6M-eYk" secondAttribute="centerY" id="GWc-eL-y4R"/>
                             <constraint firstItem="TMC-xu-kB7" firstAttribute="top" secondItem="bPq-6M-eYk" secondAttribute="topMargin" constant="12" id="Ui5-Dh-dXq"/>
                             <constraint firstItem="TMC-xu-kB7" firstAttribute="width" secondItem="bPq-6M-eYk" secondAttribute="width" id="dCH-IZ-H9a"/>
+                            <constraint firstItem="G21-Dr-qGr" firstAttribute="centerX" secondItem="bPq-6M-eYk" secondAttribute="centerX" id="diq-HN-RE8"/>
                             <constraint firstItem="YMS-gd-Knz" firstAttribute="leading" secondItem="bPq-6M-eYk" secondAttribute="leadingMargin" constant="-20" id="ftL-WC-u2T"/>
                             <constraint firstItem="YMS-gd-Knz" firstAttribute="top" secondItem="TMC-xu-kB7" secondAttribute="bottom" constant="3" id="iVU-aM-nQB"/>
                             <constraint firstItem="TMC-xu-kB7" firstAttribute="centerX" secondItem="bPq-6M-eYk" secondAttribute="centerX" id="nMu-8C-pL5"/>
@@ -167,6 +177,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="headerSubview" destination="dg9-H2-08k" id="cDl-vv-vlx"/>
+                        <outlet property="popup" destination="G21-Dr-qGr" id="uiG-1G-Tfq"/>
                         <outlet property="tableView" destination="YMS-gd-Knz" id="Jab-OF-GIN"/>
                     </connections>
                 </viewController>

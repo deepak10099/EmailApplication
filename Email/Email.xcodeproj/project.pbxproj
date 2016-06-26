@@ -221,9 +221,9 @@
 				5B769D401D1A68E4006B0908 /* DetailedEmailCells.xib */,
 				004B2F0B1D1D1AC7007BD610 /* ActionBarView.swift */,
 				004B2F091D1D1A97007BD610 /* ActionBarView.xib */,
+				00BA81321D1FC7BC00067D7A /* EmailInfoPopup.swift */,
 				00BA81301D1FC7A100067D7A /* EmailInfoPopup.xib */,
 				5BCE707A1D19083C00224D43 /* Main.storyboard */,
-				00BA81321D1FC7BC00067D7A /* EmailInfoPopup.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";

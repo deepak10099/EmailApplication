@@ -4,6 +4,7 @@ import UIKit
 
 class DetailedEmailViewController: UIViewController, UITableViewDelegate,UITableViewDataSource {
 
+    @IBOutlet weak var popup: UIView!
     @IBOutlet weak var headerSubview: UIView!
     @IBOutlet weak var tableView: UITableView!
     let boldFont = UIFont.boldSystemFontOfSize(16.0)
@@ -22,10 +23,19 @@ class DetailedEmailViewController: UIViewController, UITableViewDelegate,UITable
         super.viewDidLoad()
         currentEmailAttributeObject = ConnectionManager.fetchEmailAttributeForIndex(currentEmailId!)
         let customView = NSBundle.mainBundle().loadNibNamed("ActionBarView", owner: self, options: nil)[0] as! ActionBarView
+        headerSubview.addSubview(customView)
+
+        let customPopupView = NSBundle.mainBundle().loadNibNamed("EmailInfoPopup", owner: self, options: nil)[0] as! EmailInfoPopup
+        popup.addSubview(customPopupView)
+        popup.hidden = true
 
         self.view.setNeedsLayout()
         self.view.layoutSubviews()
-        headerSubview.addSubview(customView)
+
+        customPopupView.closeButtonTappedClosure = {
+            self.popup.hidden = true
+        }
+
         customView.deleteButtonTappedClosure = { ()->() in
             ConnectionManager.deleteEmail((self.currentEmailAttributeObject?.id)!, completion: { (success) in
                 self.delegate.handleRefresh()
@@ -57,6 +67,12 @@ class DetailedEmailViewController: UIViewController, UITableViewDelegate,UITable
         })
     }
 
+    func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+        if indexPath.row == 1 {
+            popup.hidden = false;
+        }
+        return nil
+    }
     func handleRefresh(refreshControl: UIRefreshControl) {
         ConnectionManager.fetchEmailBody(currentEmailId!, completion:{(emailBody:String,participants:NSArray) in
             self.emailBody = emailBody
@@ -159,9 +175,6 @@ class DetailedEmailViewController: UIViewController, UITableViewDelegate,UITable
         return cell;
     }
 
-    func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
-        return nil
-    }
 
     func heightNeededForText(text: NSString, withFont font: UIFont, width: CGFloat, lineBreakMode:NSLineBreakMode) -> CGFloat {
         let paragraphStyle = NSMutableParagraphStyle()

@@ -8,36 +8,49 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
+        <view alpha="0.94999999999999996" contentMode="scaleToFill" id="iN0-l3-epB" customClass="EmailInfoPopup" customModule="Email" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="280" height="350"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QPW-77-Me0">
-                    <rect key="frame" x="0.0" y="0.0" width="280" height="52.5"/>
+                    <rect key="frame" x="14" y="12" width="252" height="52.5"/>
                     <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y2e-Nd-gkX" userLabel="Close">
+                            <rect key="frame" x="206" y="0.0" width="46" height="26.5"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="46" id="0XO-WP-Hb0"/>
+                            </constraints>
+                            <state key="normal" title="Close"/>
+                            <connections>
+                                <action selector="closeButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="6n7-PF-Sg3"/>
+                            </connections>
+                        </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="From" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JDN-5c-dwm">
-                            <rect key="frame" x="0.0" y="0.0" width="280" height="26.5"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <rect key="frame" x="0.0" y="0.0" width="252" height="26.5"/>
+                            <fontDescription key="fontDescription" name="IowanOldStyle-Roman" family="Iowan Old Style" pointSize="17"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="deepakahujaahuja1@gmail.com" translatesAutoresizingMaskIntoConstraints="NO" id="38c-Bu-sFD">
-                            <rect key="frame" x="0.0" y="26.5" width="280" height="26.5"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <rect key="frame" x="0.0" y="26.5" width="252" height="26.5"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" name="IowanOldStyle-Roman" family="Iowan Old Style" pointSize="16"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="38c-Bu-sFD" firstAttribute="width" secondItem="QPW-77-Me0" secondAttribute="width" id="020-bn-eru"/>
                         <constraint firstItem="JDN-5c-dwm" firstAttribute="top" secondItem="QPW-77-Me0" secondAttribute="top" id="Izq-47-94Y"/>
                         <constraint firstItem="38c-Bu-sFD" firstAttribute="height" secondItem="QPW-77-Me0" secondAttribute="height" multiplier="0.5" id="RbS-4H-7nd"/>
                         <constraint firstItem="38c-Bu-sFD" firstAttribute="centerX" secondItem="QPW-77-Me0" secondAttribute="centerX" id="Rgw-bg-dma"/>
                         <constraint firstItem="JDN-5c-dwm" firstAttribute="height" secondItem="QPW-77-Me0" secondAttribute="height" multiplier="0.5" id="ZBK-4e-pE7"/>
+                        <constraint firstAttribute="trailing" secondItem="Y2e-Nd-gkX" secondAttribute="trailing" id="cum-aB-Dm8"/>
                         <constraint firstItem="38c-Bu-sFD" firstAttribute="centerY" secondItem="QPW-77-Me0" secondAttribute="centerY" id="dL3-mb-leh"/>
                         <constraint firstItem="JDN-5c-dwm" firstAttribute="width" secondItem="QPW-77-Me0" secondAttribute="width" id="lwA-Yj-jN9"/>
+                        <constraint firstItem="Y2e-Nd-gkX" firstAttribute="top" secondItem="JDN-5c-dwm" secondAttribute="top" id="oRf-Jt-FNE"/>
                         <constraint firstItem="38c-Bu-sFD" firstAttribute="top" secondItem="JDN-5c-dwm" secondAttribute="bottom" id="sMy-sh-2Pu"/>
+                        <constraint firstItem="Y2e-Nd-gkX" firstAttribute="height" secondItem="JDN-5c-dwm" secondAttribute="height" id="svO-bQ-dH1"/>
                         <constraint firstItem="JDN-5c-dwm" firstAttribute="centerX" secondItem="QPW-77-Me0" secondAttribute="centerX" id="tsk-hE-89Y"/>
                     </constraints>
                     <variation key="default">
@@ -47,55 +60,55 @@
                     </variation>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7n9-Bs-yJp">
-                    <rect key="frame" x="0.0" y="52.5" width="280" height="227.5"/>
+                    <rect key="frame" x="14" y="64.5" width="252" height="175"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y4F-nb-vyk">
-                            <rect key="frame" x="0.0" y="10.5" width="280" height="27"/>
+                            <rect key="frame" x="0.0" y="10.5" width="252" height="27"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="27" id="wTU-ah-eJs"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <fontDescription key="fontDescription" name="IowanOldStyle-Roman" family="Iowan Old Style" pointSize="17"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="deepakahujaahuja1@gmail.com" translatesAutoresizingMaskIntoConstraints="NO" id="ewC-08-P8T">
-                            <rect key="frame" x="0.0" y="39.5" width="280" height="186"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <rect key="frame" x="0.0" y="37.5" width="252" height="135.5"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" name="IowanOldStyle-Roman" family="Iowan Old Style" pointSize="16"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="ewC-08-P8T" firstAttribute="centerX" secondItem="7n9-Bs-yJp" secondAttribute="centerX" id="65Z-0s-5yp"/>
                         <constraint firstItem="Y4F-nb-vyk" firstAttribute="centerX" secondItem="7n9-Bs-yJp" secondAttribute="centerX" id="Gd6-NN-5OP"/>
                         <constraint firstAttribute="bottom" secondItem="ewC-08-P8T" secondAttribute="bottom" constant="2" id="MuE-ya-QmB"/>
                         <constraint firstItem="ewC-08-P8T" firstAttribute="width" secondItem="7n9-Bs-yJp" secondAttribute="width" id="edf-ZF-kB9"/>
                         <constraint firstItem="Y4F-nb-vyk" firstAttribute="width" secondItem="7n9-Bs-yJp" secondAttribute="width" id="gJe-bm-pi2"/>
-                        <constraint firstItem="ewC-08-P8T" firstAttribute="top" secondItem="Y4F-nb-vyk" secondAttribute="bottom" constant="2" id="uDt-mk-do9"/>
+                        <constraint firstItem="ewC-08-P8T" firstAttribute="top" secondItem="Y4F-nb-vyk" secondAttribute="bottom" id="uDt-mk-do9"/>
                         <constraint firstItem="Y4F-nb-vyk" firstAttribute="top" secondItem="7n9-Bs-yJp" secondAttribute="top" constant="10.5" id="uUy-Jp-YrI"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R2n-SO-lGd">
-                    <rect key="frame" x="0.0" y="280" width="280" height="70"/>
+                    <rect key="frame" x="14" y="239.5" width="252" height="70"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="From" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WZ6-yD-dBU">
-                            <rect key="frame" x="0.0" y="0.0" width="280" height="27"/>
+                            <rect key="frame" x="0.0" y="0.0" width="252" height="27"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="27" id="REQ-4L-IqV"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <fontDescription key="fontDescription" name="IowanOldStyle-Roman" family="Iowan Old Style" pointSize="17"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Subject" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="zNz-Gr-pcw">
-                            <rect key="frame" x="0.0" y="27" width="280" height="43"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <rect key="frame" x="0.0" y="27" width="252" height="43"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" name="IowanOldStyle-Roman" family="Iowan Old Style" pointSize="16"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="WZ6-yD-dBU" firstAttribute="centerX" secondItem="R2n-SO-lGd" secondAttribute="centerX" id="Fdq-2Z-igT"/>
                         <constraint firstItem="zNz-Gr-pcw" firstAttribute="top" secondItem="WZ6-yD-dBU" secondAttribute="bottom" id="NIW-kI-HJQ"/>
@@ -107,23 +120,29 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="QPW-77-Me0" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="0Xi-wz-vQa"/>
-                <constraint firstItem="7n9-Bs-yJp" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.65" id="1qb-AK-JZq"/>
-                <constraint firstItem="7n9-Bs-yJp" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="Fd7-1G-NZI"/>
+                <constraint firstItem="QPW-77-Me0" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="12" id="0Xi-wz-vQa"/>
+                <constraint firstItem="7n9-Bs-yJp" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.5" priority="100" id="1qb-AK-JZq"/>
+                <constraint firstItem="7n9-Bs-yJp" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.9" id="Fd7-1G-NZI"/>
                 <constraint firstItem="QPW-77-Me0" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.15" id="K8E-Ft-o8U"/>
                 <constraint firstItem="R2n-SO-lGd" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Lxz-vF-GaN"/>
                 <constraint firstAttribute="bottom" secondItem="R2n-SO-lGd" secondAttribute="bottom" id="MMI-gb-d7T"/>
+                <constraint firstItem="R2n-SO-lGd" firstAttribute="top" secondItem="7n9-Bs-yJp" secondAttribute="bottom" id="NxN-dE-8GH"/>
                 <constraint firstItem="7n9-Bs-yJp" firstAttribute="top" secondItem="QPW-77-Me0" secondAttribute="bottom" id="hyZ-9r-lQc"/>
-                <constraint firstItem="R2n-SO-lGd" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="lbn-61-C3L"/>
+                <constraint firstItem="R2n-SO-lGd" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.9" id="lbn-61-C3L"/>
                 <constraint firstItem="7n9-Bs-yJp" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="qFJ-To-SMG"/>
                 <constraint firstItem="R2n-SO-lGd" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.2" id="s2k-76-U0o"/>
-                <constraint firstItem="QPW-77-Me0" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="sHh-nv-ugV"/>
+                <constraint firstItem="QPW-77-Me0" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.9" id="sHh-nv-ugV"/>
                 <constraint firstItem="QPW-77-Me0" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="yci-6e-caa"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="MMI-gb-d7T"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="21" y="30"/>
         </view>
     </objects>
