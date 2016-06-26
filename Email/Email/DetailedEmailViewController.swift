@@ -4,7 +4,7 @@ import UIKit
 
 class DetailedEmailViewController: UIViewController, UITableViewDelegate,UITableViewDataSource {
     
-    @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var headerSubview: UIView!
     @IBOutlet weak var tableView: UITableView!
     let boldFont = UIFont.boldSystemFontOfSize(16.0)
     let normalFont = UIFont.systemFontOfSize(14.0)
@@ -25,7 +25,7 @@ class DetailedEmailViewController: UIViewController, UITableViewDelegate,UITable
 
         self.view.setNeedsLayout()
         self.view.layoutSubviews()
-        headerView.addSubview(customView)
+        headerSubview.addSubview(customView)
         customView.deleteButtonTappedClosure = { ()->() in
             ConnectionManager.deleteEmail((self.currentEmailAttributeObject?.id)!, completion: { (success) in
                 self.delegate.handleRefresh()
