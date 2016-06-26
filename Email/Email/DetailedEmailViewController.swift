@@ -30,7 +30,7 @@ class DetailedEmailViewController: UIViewController, UITableViewDelegate,UITable
         popup.hidden = true
         ConnectionManager.fetchEmailBody((self.currentEmailAttributeObject?.id)!, completion: { (emailBody, emailsArray) in
             for email in emailsArray {
-               customPopupView.fromParticipant.text = NSString(format: "%@ %@ \n", (customPopupView.fromParticipant as UITextView).text,(email as! NSDictionary)["email"] as! NSString) as String
+                customPopupView.fromParticipant.text = NSString(format: "%@ %@ \n", (customPopupView.fromParticipant as UITextView).text,(email as! NSDictionary)["email"] as! NSString) as String
             }
         })
         customPopupView.subject.text = currentEmailAttributeObject?.subject
@@ -187,7 +187,7 @@ class DetailedEmailViewController: UIViewController, UITableViewDelegate,UITable
         let size: CGSize = text.boundingRectWithSize(CGSizeMake(width, CGFloat.max), options: [.UsesLineFragmentOrigin, .UsesFontLeading], attributes: [ NSFontAttributeName: font, NSParagraphStyleAttributeName: paragraphStyle], context: nil).size
         return ceil(size.height);
     }
-
+    
     override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
         return UIInterfaceOrientationMask.All
     }

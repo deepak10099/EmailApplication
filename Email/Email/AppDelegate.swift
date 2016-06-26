@@ -36,7 +36,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if #available(iOS 8.0, *) {
             let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
             alert.addAction(UIAlertAction.init(title:"OK", style: .Cancel, handler: { (action) in
-                print("message")
             }))
             window?.rootViewController?.presentViewController(alert, animated: true, completion: nil)
         } else {

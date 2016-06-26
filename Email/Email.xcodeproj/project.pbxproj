@@ -15,7 +15,6 @@
 		004B2F121D1D6E07007BD610 /* trash.png in Resources */ = {isa = PBXBuildFile; fileRef = 004B2F111D1D6E07007BD610 /* trash.png */; };
 		004B2F141D1D6F10007BD610 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = 004B2F131D1D6F10007BD610 /* close.png */; };
 		00B1BF2F1D1E95E40072229E /* read.png in Resources */ = {isa = PBXBuildFile; fileRef = 00B1BF2E1D1E95E40072229E /* read.png */; };
-		00BA81291D1FBA7400067D7A /* actionBarImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 00BA81281D1FBA7400067D7A /* actionBarImage.png */; };
 		00BA81311D1FC7A100067D7A /* EmailInfoPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00BA81301D1FC7A100067D7A /* EmailInfoPopup.xib */; };
 		00BA81331D1FC7BC00067D7A /* EmailInfoPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BA81321D1FC7BC00067D7A /* EmailInfoPopup.swift */; };
 		5B3931AB1D1A5CEA0054045A /* DetailedEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3931AA1D1A5CEA0054045A /* DetailedEmailViewController.swift */; };
@@ -133,7 +132,6 @@
 		004B2F111D1D6E07007BD610 /* trash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trash.png; sourceTree = "<group>"; };
 		004B2F131D1D6F10007BD610 /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
 		00B1BF2E1D1E95E40072229E /* read.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = read.png; sourceTree = "<group>"; };
-		00BA81281D1FBA7400067D7A /* actionBarImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = actionBarImage.png; sourceTree = "<group>"; };
 		00BA81301D1FC7A100067D7A /* EmailInfoPopup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmailInfoPopup.xib; sourceTree = "<group>"; };
 		00BA81321D1FC7BC00067D7A /* EmailInfoPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailInfoPopup.swift; sourceTree = "<group>"; };
 		5B3931AA1D1A5CEA0054045A /* DetailedEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailedEmailViewController.swift; sourceTree = "<group>"; };
@@ -322,7 +320,6 @@
 		5BCE70B21D1945AE00224D43 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				00BA81281D1FBA7400067D7A /* actionBarImage.png */,
 				004B2F131D1D6F10007BD610 /* close.png */,
 				004B2F111D1D6E07007BD610 /* trash.png */,
 				004B2F0E1D1D6D25007BD610 /* unread.png */,
@@ -511,7 +508,6 @@
 				004B2F0A1D1D1A97007BD610 /* ActionBarView.xib in Resources */,
 				5B769D411D1A68E4006B0908 /* DetailedEmailCells.xib in Resources */,
 				00B1BF2F1D1E95E40072229E /* read.png in Resources */,
-				00BA81291D1FBA7400067D7A /* actionBarImage.png in Resources */,
 				5BCE70AD1D190C7200224D43 /* CustomTableViewCell.xib in Resources */,
 				5BCE707C1D19083C00224D43 /* Main.storyboard in Resources */,
 			);

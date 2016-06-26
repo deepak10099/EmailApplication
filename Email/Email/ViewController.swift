@@ -68,7 +68,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                 self.longPressOnCell = false
                 UIView.animateWithDuration(0.5, animations: {
                     self.animatableHeader.frame.origin.y = 0 - self.animatableHeader.frame.height - 20
-                    print(self.animatableHeader.frame.origin.y)
                 })
             }
         }
@@ -117,7 +116,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("count: \(ConnectionManager.emailAttributesArray.count)")
         return ConnectionManager.emailAttributesArray.count
     }
 
@@ -174,10 +172,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         return cell
     }
 
-    func tableView(tableView: UITableView, didHighlightRowAtIndexPath indexPath: NSIndexPath) {
-        print("highlight")
-    }
-
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
     }
@@ -221,7 +215,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             cell?.setSelected(true, animated: true)
             updateReadUnreadEmailImageAndTag()
             tableView.cellForRowAtIndexPath(indexPath)?.backgroundColor = UIColor.lightGrayColor()
-            print("Selected cells: \(tableView.indexPathsForSelectedRows?.count)")
             return
         }
         ConnectionManager.emailAttributesArray[indexPath.row].isRead = true
@@ -236,30 +229,26 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
 
     func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
-        print("deselect")
         updateReadUnreadEmailImageAndTag()
         if ((tableView.indexPathsForSelectedRows?.count) == nil) {
             self.longPressOnCell = false
             UIView.animateWithDuration(0.5, animations: {
                 self.animatableHeader.frame.origin.y = 0 - self.animatableHeader.frame.height - 20
-                print(self.animatableHeader.frame.origin.y)
             })
         }
         self.tableView.cellForRowAtIndexPath(indexPath)?.backgroundColor = UIColor.clearColor()
-        print("Selected cells: \(tableView.indexPathsForSelectedRows?.count)")
     }
     func handleLongPressGesture(gestureRecognizer:UILongPressGestureRecognizer)  {
         let tappedPoint = gestureRecognizer.locationInView(tableView)
         let indexPathOfTappedCell = tableView.indexPathForRowAtPoint(tappedPoint)
         if indexPathOfTappedCell == nil {
-            print("long press on table view but not on a row")
+
         }
         else
         {
             if (gestureRecognizer.state ==  UIGestureRecognizerState.Began)
             {
                 if longPressOnCell == false{
-                    print("Long press on table view at row \(indexPathOfTappedCell?.row)")
                     longPressOnCell = true
                     UIView.animateWithDuration(0.2, delay: 0, options: .CurveEaseOut, animations: {
                         self.animatableHeader.frame = self.unreadEmailCountLabel.frame
@@ -299,9 +288,9 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
         return UIInterfaceOrientationMask.All
     }
-
+    
 }
