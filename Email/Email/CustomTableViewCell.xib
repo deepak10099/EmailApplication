@@ -110,6 +110,6 @@
         </view>
     </objects>
     <resources>
-        <image name="unstarred.png" width="128" height="128"/>
+        <image name="unstarred.png" width="16" height="16"/>
     </resources>
 </document>

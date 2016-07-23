@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "C72D3B8E928C9728213178C193B983B4AED90DA2",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "62BB7B7D5AB70B2E2CFD1365A39A88541FD23187" : 0,
+    "C72D3B8E928C9728213178C193B983B4AED90DA2" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "FC6DE51A-1EA4-4700-8A06-54EAAE5FE6B9",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "62BB7B7D5AB70B2E2CFD1365A39A88541FD23187" : "",
+    "C72D3B8E928C9728213178C193B983B4AED90DA2" : "EmailApplication\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Email",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Email\/Email.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/deepak10099\/Deepak-Ahuja.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "62BB7B7D5AB70B2E2CFD1365A39A88541FD23187"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/deepak10099\/EmailApplication.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C72D3B8E928C9728213178C193B983B4AED90DA2"
+    }
+  ]
+}
